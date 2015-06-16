@@ -257,6 +257,14 @@ body{
   min-width:100px;
 }
 
+#connexion_utilisateur{
+  position:absolute;
+  top:20%;
+  left:25%;
+  width:50%;
+  height:60%;;
+}
+
 .infos_utilisateur{
   position:relative;
   background-color:#AAAAAA;
@@ -409,6 +417,10 @@ body{
 
 .actif{
   background-color:rgba(208,7,7,0.850);  
+}
+
+#bouton_inscription{
+  
 }
 
 #bouton_proposition{
