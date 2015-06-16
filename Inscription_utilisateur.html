@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inscription</title>
+    <meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="projet_Web.css">
+	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class="bandeau">
+      <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
+        <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
+      </form>
+	  <img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/>
+	  <a href="Proposition_jeu.html" id="bouton_proposition">Propose ton jeu</a>
+    </div>
+  
+  <div class="boutons_navigation">
+	<a href="Accueil.html" class="bouton actif" style="margin-right:10px;">Accueil</a>
+	<a href="Top10.html" class="bouton">Top 10</a>  
+  </div>
+   
+   <div class="formulaire_utilisateur">
+    <form action="Inscription_utilisateur.php" method="post" id="inscription_utilisateur">
+		<fieldset><legend>Inscription</legend>
+			<label for="pseudo">Nom d'utilisateur :</label><input type="text" name="pseudo" placeholder="votre pseudo" maxlength="30" required/><br><br>
+			<label for="mdp">Mot de passe :</label><input type="password" name="mdp" maxlength="30" placeholder="votre mot de passe" required/><br><br>
+			<label for="confirm_mdp">Mot de passe :</label><input type="password" name="confirm_mdp" maxlength="30" placeholder="confirmez votre mot de passe" required/><br><br>
+			<label for="email">Adresse électronique :</label><input type="text" name="email" maxlength="60" placeholder="example@example.fr" required><br><br>
+			<input type="submit" name="valider" value="Valider" style="margin-right:4%;"/><input type="reset" name="annuler" value="Vider le formulaire"/><br>
+		</fieldset>
+    </form>
+   </div>
+   
+    <div class="footer">
+	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+    </div>
+</body>
+</html>
