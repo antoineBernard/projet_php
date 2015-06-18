@@ -8,21 +8,7 @@
 </head>
 <body>
 
-    <div class="bandeau">
-      <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
-        <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
-      </form>
-		  <a href="Accueil.html"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
-		  <a href="Proposition_jeu.html" id="bouton_proposition">Propose ton jeu</a>
-		  <a href="Connexion_utilisateur.html" id="bouton_proposition">Se connecter</a>
-    </div>
-  
-  <div class="boutons_navigation">
-	<a href="Accueil.html" class="bouton actif" style="margin-right:10px;">Accueil</a>
-	<a href="Top10.html" class="bouton">Top 10</a>	
-  </div>
-       <div class ="nouveau_membre">
-        <?php
+           <?php
             
             //on se connecte à la base
             $servername = getenv('IP');
@@ -48,24 +34,21 @@
             $mot_de_passe = crypt($mdp);
             //on protége des injection js et html
             $pseudonyme = htmlspecialchars($pseudonyme);
-echo "echo1";
+
             $reqVerif = $bdd->prepare('SELECT ID_utilisateur FROM utilisateurs WHERE Adresse_email = ? AND Mot_De_Passe = ?');
           
             $reqVerif->bind_param("ss",$email, $mot_de_passe);
             //j'execute la requete et la range dans resultat
             $resultat = $reqVerif->execute();
             
-
-echo "echo2 : $resultat";
             //si le pseudo existe déjà en BDD
             if($resultat)
             {
-              
-              
                 session_start();
                 $_SESSION['ID_utilisateur'] = $resultat['ID_utilisateur'];
                 $_SESSION['Pseudonyme'] = $pseudonyme;
-                echo "<p> Vous êtes connecté en tant que $pseudonyme !<p></div>";
+                $pseudo = $_SESSION['Pseudonyme'];
+                echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";
 
             }
             else
@@ -79,10 +62,48 @@ echo "echo2 : $resultat";
               <?php
               
             }
-            
-            
+      
               ?>
-    
+
+    <div class="bandeau">
+      <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
+        <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
+      </form>
+		  <a href="Accueil.html"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
+		  <a href="Proposition_jeu.html" id="bouton_proposition">Propose ton jeu</a>
+		  
+		<?php
+		/*
+		pour savoir si une session est déjà ouverte : pour les versions des PHP supérieur à 5.4.0 (sur CLOU9 on est à 5.5.9), a vérifier sur nos machines.
+		sur les versions antérieur : 
+                                		if(session_id() == '') {
+                                      session_start();
+                                    }
+		*/
+
+		  if(session_status() == PHP_SESSION_NONE)
+		  {
+		    ?>
+        <a href="Connexion_utilisateur.html" id="bouton_proposition">Se connecter</a>
+        <?php
+      }
+		  else
+		  {
+		    $pseudo = $_SESSION['Pseudonyme'];
+		    ?>
+		    <a href="Connexion_utilisateur.html" id="bouton_connectu"> <?php echo $pseudo; ?> connecté !</a>
+		    <?php
+		  }
+
+    ?>
+    </div>
+  
+  <div class="boutons_navigation">
+	<a href="Accueil.html" class="bouton actif" style="margin-right:10px;">Accueil</a>
+	<a href="Top10.html" class="bouton">Top 10</a>	
+  </div>
+       <div class ="nouveau_membre">
+
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
     </div>

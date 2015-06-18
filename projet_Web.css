@@ -420,10 +420,12 @@ body{
 }
 
 #bouton_inscription{
-  
+  position: relative;
+  margin-top: 30%;
+  margin-left: 28%;
 }
 
-#bouton_proposition{
+#bouton_proposition, #bouton_connectu{
   float:right;
   width:10%;
   min-width:140px;
@@ -440,7 +442,12 @@ body{
   margin-left:10px;
 }
 
-#bouton_proposition:hover{
+#bouton_connectu{
+  width:10%;
+  color: green;
+}
+
+#bouton_proposition:hover, #bouton_connectu:hover{
   border-color:rgba(208,7,7,0.750);
   color:rgba(208,7,7,0.750);
 }
