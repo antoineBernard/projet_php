@@ -38,7 +38,7 @@
 		  else
 		  {
 		    $pseudo = $_SESSION['Pseudonyme'];
-		    //$ID_utilisateur = $_SESSION['ID_utilisateur'];
+		    $ID_utilisateur = $_SESSION['ID_utilisateur'];
 	    ?>
 		    <a href="Profil_utilisateur.php" id="bouton_connectu"> <?php echo $pseudo; ?> connecté !</a>
 		    <?php
@@ -77,7 +77,7 @@
             // MARCHE PAS !! :(
 			*/
 			
-	    $reponse = $bdd->query("SELECT Adresse_email FROM utilisateurs WHERE ID_utilisateur = $ID_utilisateur");
+	    $reponse = $bdd->query("SELECT Adresse_email FROM utilisateurs WHERE Pseudonyme = $pseudo");
 	
 	    while ($donnees = $reponse->fetch())
 	    {
