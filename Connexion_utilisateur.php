@@ -34,7 +34,6 @@
             $mot_de_passe = crypt($mdp);
             //on protége des injection js et html
             $pseudonyme = htmlspecialchars($pseudonyme);
-
             $reqVerif = $bdd->prepare('SELECT ID_utilisateur FROM utilisateurs WHERE Adresse_email = ? AND Mot_De_Passe = ?');
           
             $reqVerif->bind_param("ss",$email, $mot_de_passe);
@@ -49,13 +48,11 @@
                 $_SESSION['Pseudonyme'] = $pseudonyme;
                 $pseudo = $_SESSION['Pseudonyme'];
                 echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";
-
             }
             else
             {
                 
         ?>
-
                   <div class="nouveau_membre" >
                       <p>l'utilisateur n'existe pas !</p>
                   </div>
@@ -69,7 +66,7 @@
       <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
         <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
       </form>
-		  <a href="Accueil.html"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
+		  <a href="Accueil.php"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
 		  <a href="Proposition_jeu.html" id="bouton_proposition">Propose ton jeu</a>
 		  
 		<?php
@@ -80,7 +77,6 @@
                                       session_start();
                                     }
 		*/
-
 		  if(session_status() == PHP_SESSION_NONE)
 		  {
 		    ?>
@@ -91,16 +87,15 @@
 		  {
 		    $pseudo = $_SESSION['Pseudonyme'];
 		    ?>
-		    <a href="Connexion_utilisateur.html" id="bouton_connectu"> <?php echo $pseudo; ?> connecté !</a>
+		    <a href="Profil_utilisateur.php" id="bouton_connectu"> <?php echo $pseudo; ?> connecté !</a>
 		    <?php
 		  }
-
     ?>
     </div>
   
   <div class="boutons_navigation">
-	<a href="Accueil.html" class="bouton actif" style="margin-right:10px;">Accueil</a>
-	<a href="Top10.html" class="bouton">Top 10</a>	
+	<a href="Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
+	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
        <div class ="nouveau_membre">
 

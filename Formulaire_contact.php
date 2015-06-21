@@ -1,20 +1,15 @@
+<?php
+	session_start ();//indispensable pour garder la connexion
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Contact</title>
-    <meta charset="UTF-8"/>
-	<link rel="stylesheet" type="text/css" href="projet_Web.css">
-	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-</head>
-<body>
-    <div class="bandeau">
-      <img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/>
-    </div>
-   
-  <div class="boutons_navigation">
-	<a href="Accueil.html" class="bouton" style="margin-right:10px;">Accueil</a>
-	<a href="Top10.html" class="bouton">Top 10</a>  
-  </div>
+	<?php
+	//j'ai fais un include pour alléger les répétitions de code
+		include 'bandeau.php';
+  	?>
+
+	
    
    <div class="formulaire_utilisateur">
     <form action="Inscription_utilisateur.html" method="post" id="formulaire_contact">
@@ -31,7 +26,7 @@
    </div>
    
     <div class="footer">
-	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+	  <a href="Formulaire_contact.php">Contact</a> / Réseaux sociaux
     </div>
 </body>
 </html>

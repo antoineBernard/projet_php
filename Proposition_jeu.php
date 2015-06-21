@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Accueil</title>
-    <meta charset="UTF-8"/>
-	<link rel="stylesheet" type="text/css" href="projet_Web.css">
-	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-</head>
-<body>
-
-    <div class="bandeau">
-      <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
-        <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
-      </form>
-		  <a href="Accueil.html"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
-		  <a href="Proposition_jeu.html" id="bouton_proposition">Propose ton jeu</a>
-		  <a href="Connexion_utilisateur.html" id="bouton_proposition">Se connecter</a>
-    </div>
-  
-  <div class="boutons_navigation">
-	<a href="Accueil.html" class="bouton actif" style="margin-right:10px;">Accueil</a>
-	<a href="Top10.html" class="bouton">Top 10</a>	
-  </div>
+	<?php
+	//j'ai fais un include pour alléger les répétitions de code
+		include 'bandeau.php';
+    ?>
    
    <div class="formulaire_utilisateur">
     <form action="Creation_jeu.php" method="post" id="proposition_jeu">

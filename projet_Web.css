@@ -425,7 +425,7 @@ body{
   margin-left: 28%;
 }
 
-#bouton_proposition, #bouton_connectu{
+#bouton_proposition, #bouton_connectu, #bouton_deconnexion{
   float:right;
   width:10%;
   min-width:140px;
@@ -440,6 +440,12 @@ body{
   border-radius:5px;
   border:solid 2px #FFFFFF;
   margin-left:10px;
+}
+#bouton_deconnexion{
+  margin-top: 85%;
+  margin-right: 10%;
+  color : black;
+  border-color : black;
 }
 
 #bouton_connectu{
