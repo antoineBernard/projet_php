@@ -1,45 +1,21 @@
-<?php
-	session_start ();//indispensable pour garder la connexion
-?>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>Accueil</title>
+	<title>Ajouter un jeu</title>
     <meta charset="UTF-8"/>
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-	<div class="bandeau">
-      <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
-        <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
-      </form>
-		  <a href="Accueil.php"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
-		  <a href="Proposition_jeu.html" id="bouton_proposition">Propose ton jeu</a>
-		  
-		<?php
-		  if(session_status() == PHP_SESSION_NONE)
-		  {
-	    ?>
-        <a href="Connexion_utilisateur.html" id="bouton_proposition">Se connecter</a>
-        <?php
-      }
-		  else
-		  {
-		    $pseudo = $_SESSION['Pseudonyme'];
-	    ?>
-		    <a href="Profil_utilisateur.php" id="bouton_connectu"> <?php echo $pseudo; ?> connecté !</a>
-		    <?php
-		  }
-            ?>
-    </div>
-  
+	<?php
+	//j'ai fais un include pour alléger les répétitions de code
+		include 'bandeau.php';
+    ?>
   <div class="boutons_navigation">
-	<a href="Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
-	<a href="Top10.php" class="bouton">Top 10</a>	
+  	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
+  	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
-   
+  
    <div id="formulaire_jeu_backoffice">
     <form action="Creation_jeu.php" method="post" id="ajout_jeu">
 		<fieldset><legend>Ajouter un jeu</legend>
@@ -64,7 +40,7 @@
 													<option>Science-fiction</option>
 													<option>Steampunk</option>
 												  </select><br><br>			
-			<label for="annee_sortie">Année de sortie :</label><input type="text" name="annee_sortie" maxlength="4" required /><br><br>
+			<label for="date_sortie">Année de sortie :</label><input type="text" name="date_sortie" maxlength="10" placeholder="jj/mm/yyyy" required /><br><br>
 			<label for="description">Description :</label><textarea name="description" placeholder="Description du jeu"required ></textarea><br><br>
 			<label for="test">Test :</label><textarea name="test" placeholder="Test du jeu"required ></textarea><br><br>
 			

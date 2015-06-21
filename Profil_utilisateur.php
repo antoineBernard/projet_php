@@ -9,7 +9,7 @@
 
     // Create connection
     $bdd = new PDO("mysql:host=$servername;dbname=$database;charset=utf8","$username", "$password");
-	
+	  //$bdd = new mysqli($servername, $username, $password, $database, $dbport);
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,9 +75,21 @@
             
             $email = $resultat['Adresse_email'];
             // MARCHE PAS !! :(
-			*/
+             */
+            
+            // On créé la requête
+						$email ="";
+						$reponse = $bdd->query('SELECT Adresse_email FROM utilisateurs WHERE Pseudonyme= \''.$pseudo.'\' ');
+						
+						while ($donnees = $reponse->fetch())
+						{
+						   $email = $donnees['Adresse_email'];
+						}
+						
+						$reponse->closeCursor();
 			
-	    $reponse = $bdd->query("SELECT Adresse_email FROM utilisateurs WHERE Pseudonyme = $pseudo");
+			/*
+	    $reponse = $bdd->query("SELECT * FROM utilisateurs WHERE Pseudonyme = $pseudo");
 	
 	    while ($donnees = $reponse->fetch())
 	    {
@@ -85,9 +97,9 @@
 	    }
 	    
 	    $reponse->closeCursor();
-	    
+	    */
 			echo "<p><b>Nom d'utilsateur :</b> $pseudo <br/><br/>";
-			//echo   "<b>Adresse de messagerie :</b> $email <br/>";
+			echo   "<b>Adresse de messagerie :</b> $email <br/>";
 		
 		
 		?>

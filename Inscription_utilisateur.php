@@ -8,20 +8,14 @@
 </head>
 <body>
 
-    <div class="bandeau">
-      <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
-        <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
-      </form>
-		  <a href="Accueil.php"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
-		  <a href="Proposition_jeu.html" id="bouton_proposition">Propose ton jeu</a>
-		  <a href="Connexion_utilisateur.html" id="bouton_proposition">Se connecter</a>
-    </div>
-  
+	<?php
+	//j'ai fais un include pour alléger les répétitions de code
+		include 'bandeau.php';
+    ?>
   <div class="boutons_navigation">
-	<a href="Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
-	<a href="Top10.html" class="bouton">Top 10</a>	
+  	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
+  	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
-   
         <?php
             
             //on se connecte à la base
@@ -50,8 +44,6 @@
         
                 //on crypte le mot de passe
                 $mot_de_passe = crypt($mdp);
-                //on protége des injection js et html
-                $pseudonyme = htmlspecialchars($Pseudonyme);
                 
                 //-----------------------on verifie si l'utilisateur n'existe pas déjà
                 //je prépare ma requête
@@ -77,6 +69,7 @@
                     if(filter_var($email, FILTER_VALIDATE_EMAIL))
                     {
                     //insertion dans la base
+                echo "regarde ICI ===> $pseudonyme"."<br>";
                      $req = $bdd->prepare('INSERT INTO utilisateurs(Pseudonyme, Mot_de_passe, Adresse_email, Date_inscription) VALUES(?, ?, ?, CURDATE())');
                      //"sss", car 3 paramètre bindé de type String
                      $req->bind_param("sss", $pseudonyme, $mot_de_passe, $email);

@@ -35,7 +35,7 @@
         die("Connection failed: " . $bdd->connect_error);
     } 
 
-    $reponse = $bdd->query('SELECT Adresse_email FROM utilisateurs WHERE ID_utilisateur = 1');
+    $reponse = $bdd->query('SELECT Pseudonyme, Adresse_email FROM utilisateurs');
 
     while ($donnees = $reponse->fetch())
     {

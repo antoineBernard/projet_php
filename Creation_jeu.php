@@ -61,48 +61,40 @@
 <html>
 <head>
 	<title>Nom du jeu</title>
-    <meta charset=\nUTF-8\n/>
-	<link rel=\nstylesheet\n type=\ntext/css\n href=\n../projet_Web.css\n>
+    <meta charset=\"UTF-8\"/>
+	<link rel=\"stylesheet\" type=\"text/css\" href=\"../projet_Web.css\">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
   <body>
-  <div class=\ncontenu\n>
-    <div class=\nbandeau\n>
-      <form id=\nrecherche_nom_form\n method=\npost\n action=\nResultat_recherche.html\n>
-        <input type=\ntext\n name=\nrecherche_nom\n placeholder=\nRechercher par nom\n/>
-      </form>
-	  <img src=\n../Images/logo_projet_web_blanc.png\n style=\nposition:absolute;height:80%;top:10%;left:47.5%;\n/>
-	  <a href=\n../Proposition_jeu.html\n id=\nbouton_proposition\n>Propose ton jeu</a>
-    </div>
+  <div class=\"contenu\">
+    <?php
+	  //j'ai fais un include pour alléger les répétitions de code
+		include '../bandeau.php';
+    ?>
 
-  <div class=\nboutons_navigation\n>
-	<a href=\n../Accueil.html\n class=\nbouton\n style=\nmargin-right:10px;\n>Accueil</a>
-	<a href=\n../Top10.html\n class=\nbouton\n>Top 10</a>	
-  </div>
-
-	<div class=\nfiche_jeu\n> 
-	  <div class=\npresentation_jeu\n>
+	<div class=\"fiche_jeu\"> 
+	  <div class=\"presentation_jeu\">
         <p>".$description."</p>
       </div>
 
 
 
-      <div class=\nnote_jeu\n>
+      <div class=\"note_jeu\">
 		17/20
       </div>
 
 
-      <div class=\ntest_jeu\n>
+      <div class=\"test_jeu\">
         <p>".$test."</p> 
       </div>
     </div>  
 
-      <div class=\ncommentaires_jeu\n>
+      <div class=\"commentaires_jeu\">
         <p>Commentaires d'utilisateurs</p>
       </div>
       
-    <div class=\nfooter\n>
-	  <a href=\n../Formulaire_contact.html\n>Contact</a> / Réseaux sociaux
+    <div class=\"footer\">
+	  <a href=\"../Formulaire_contact.html\">Contact</a> / Réseaux sociaux
     </div>
   </div>
   </body>
