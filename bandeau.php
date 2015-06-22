@@ -14,7 +14,7 @@
     		  <a href="Proposition_jeu.php" id="bouton_proposition">Propose ton jeu</a>
     		  
     		<?php
-    		  if(session_status() == PHP_SESSION_NONE)
+    		  if(!$_SESSION['Pseudonyme'])//si il n'y a pas de variable de session Pseudonyme c'est que l'utilisateur est deco
     		  {
     	    ?>
             <a href="Connexion_utilisateur.html" id="bouton_proposition">Se connecter</a>

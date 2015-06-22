@@ -1,3 +1,6 @@
+<?php
+	session_start ();//indispensable pour garder la connexion
+?>
 <!DOCTYPE html>
 <html>
 <head>

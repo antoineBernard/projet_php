@@ -1,0 +1,14 @@
+git log //pour avoir la liste des commit
+
+git status //pour avoir la liste des fichiers modifié depuis le dernier commit
+
+git diff //voir toute les lignes modifié depuis le dernie commit
+
+git stash //toute les modifications effectées depuis le dernier commit sont annulé et stocker dans une "corbeille"
+
+git stash pop //récupérer le dernier stash de la corbeilel (dit moi si tu veux récupere un stash antérieur)
+
+
+quand j'ai fini mon travail :
+git add . //je met tout dans mon "panier"
+git commit -am"<inserermessagesympatique>"    //je commit

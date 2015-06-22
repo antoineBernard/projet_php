@@ -60,8 +60,11 @@
 		<p>Modifier les informations de profil</p>
 		
 		<div>
-        	<a href="Accueil.php" class="bouton" id="bouton_deconnexion">Deconnexion</a>
-    	</div>
+      	<!-- le bouton est en fait un formulaire qui envoit vers Deconnexion.php. Celui ci coupe la session et renvoi vers l'accueil-->
+  			<form method="post "action="Deconnexion.php">
+  				<input type="submit" value="Deconnexion" id ="bouton_deconnexion"/>
+  			</form>
+  	</div>
 	
 	</div>
 	

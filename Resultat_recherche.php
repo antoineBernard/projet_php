@@ -33,7 +33,38 @@
 			}
 			else
 			{
-			  echo $genre." ".$univers." ".$annee;	
+			  echo $genre." ".$univers." ".$annee;
+			  
+			  try
+			  {
+				  $servername = getenv('IP');
+				  $username = getenv('C9_USER');
+    		  $password = "";
+				  $database = "ProjetWeb";
+				  $bdd=new PDO("mysql:host=$servername;dbname=$database",$username,$password);
+		  	}
+			  catch(Exception $e)
+			  {
+			  	echo "Erreur de connexion avec la base : projetweb\n";
+		  		echo 'Message : '.$e->getMessage()."\n";
+			  }
+			  
+			  $req = $bdd->prepare('SELECT Nom, Sortie, Nom_studio, Genre, Univers, URL FROM jeux WHERE Genre=:Genre AND Univers=:Univers');
+			  
+			  $criteres=array(
+			  	             ':Genre'=>$genre,
+			  	             ':Univers'=>$univers
+			  	            );
+			  $req=execute($criteres);
+			  
+			  while($jeuTrouve = $criteres->fetch())
+			  {
+			    echo $jeuTrouve['Nom']."\t".$jeuTrouve['Nom_studio']."\n";
+			    echo $jeuTrouve['Genre']."\t".$jeuTrouve['Univers']."\n";
+			    echo $jeuTrouve['Sortie']."\n\n";
+			  }
+			  
+			  $req->closeCursor();
 			}
 		?>
 	</div>

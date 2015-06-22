@@ -479,3 +479,11 @@ body{
   max-width:500px;
   margin-right:0px;
 }
+
+#btn1{
+  border-color: transparent;
+  font-size: -webkit-xxx-large;
+  background-color: transparent;
+  margin-left: 10%;
+  margin-top: 10%;
+}

@@ -14,7 +14,7 @@
 			$genre=$_POST['genre'];
 			$univers=$_POST['univers'];
 			$date_sortie=$_POST['date_sortie'];	
-		  $description=$_POST['description'];
+		    $description=$_POST['description'];
 			$test=$_POST['test'];
 			
 			$nom_jeu=trim($nom_jeu);
@@ -104,7 +104,7 @@
 			try{
 				$servername = getenv('IP');
 				$username = getenv('C9_USER');
-    		$password = "";
+    		    $password = "";
 				$database = "ProjetWeb";
 				$bdd=new PDO("mysql:host=$servername;dbname=$database",$username,$password);					
 			}
@@ -122,8 +122,10 @@
 							 'Univers'=>$univers,
 							 'URL'=>'localhost/ProjetWeb/'.$url
 							 );
+							 
+			echo $genre."   ".$univers."\n";
 			
-			$req->execute($ligne_jeu);							 
+			$req->execute($ligne_jeu);	
 
 			/*
 			$req->bindParam(':Nom',$nom_jeu);

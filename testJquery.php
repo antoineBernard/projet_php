@@ -29,7 +29,7 @@
   </div>
   
   <div class="recherche" id="recherche">
-			<button id="btn1">TROUVE TON JEU !</button>
+			<button id="btn1">TROUVE TON JEU BRO !</button>
   </div> 
   
 
