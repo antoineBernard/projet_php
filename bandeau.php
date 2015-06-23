@@ -24,7 +24,7 @@
     <body>
     
     	<div class="bandeau">
-          <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
+          <form id="recherche_nom_form" method="post" action="Resultat_recherche_bandeau.php">
             <input type="text" id="recherche_jeux_nom" name="recherche_nom" placeholder="Rechercher par nom"/>
           </form>
     		  <a href="/Accueil.php"><img src="/Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>

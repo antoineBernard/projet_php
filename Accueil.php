@@ -39,7 +39,6 @@
 			<p id="btn1">TROUVE TON JEU</p>
   </div> 
   
-
     <div class="encadre">
       <div class="intitule">
         <p>Jeu du mois</p>

@@ -9,7 +9,7 @@
 
     // Create connection
     $bdd = new PDO("mysql:host=$servername;dbname=$database;charset=utf8","$username", "$password");
-	  //$bdd = new mysqli($servername, $username, $password, $database, $dbport);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,8 +56,8 @@
 	
 		<img src="Images/sid.jpg" style="position:relative;clear:both;margin-top:15px;margin-left:20px;margin-right:auto;margin-right:auto;width:140px;height:140px;"/>
 		
-		<p>Modifier l'avatar</p>
-		<p>Modifier les informations de profil</p>
+		<button>Modifier l'avatar</button>
+		<button>Modifier les informations de profil</button>
 		
 		<div>
       	<!-- le bouton est en fait un formulaire qui envoit vers Deconnexion.php. Celui ci coupe la session et renvoi vers l'accueil-->
