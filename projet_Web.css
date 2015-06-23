@@ -44,7 +44,7 @@ body{
   margin-left:25px;
 }
 
-.recherche{
+#recherche{
   position:relative;
   background-color:#C30B0B;
   width:35%;
@@ -484,6 +484,4 @@ body{
   border-color: transparent;
   font-size: -webkit-xxx-large;
   background-color: transparent;
-  margin-left: 10%;
-  margin-top: 10%;
 }

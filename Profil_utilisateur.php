@@ -70,37 +70,18 @@
 	
 	<div class="infos_utilisateur">
 		<?php
-			/*
-			$reqMail= $bdd->prepare('SELECT Adresse_email FROM utilisateurs WHERE Pseudonyme = ?');
-            $reqMail->bind_param("s",$pseudo);
-            //j'execute la requete et la range dans resultat
-            $resultat = $reqMail->execute();
-            
-            $email = $resultat['Adresse_email'];
-            // MARCHE PAS !! :(
-             */
-            
-            // On créé la requête
-						$email ="";
-						$reponse = $bdd->query('SELECT Adresse_email FROM utilisateurs WHERE Pseudonyme= \''.$pseudo.'\' ');
-						
-						while ($donnees = $reponse->fetch())
-						{
-						   $email = $donnees['Adresse_email'];
-						}
-						
-						$reponse->closeCursor();
+
+      // On créé la requête
+			$email ="";
+			$reponse = $bdd->query('SELECT Adresse_email FROM utilisateurs WHERE Pseudonyme= \''.$pseudo.'\' ');
 			
-			/*
-	    $reponse = $bdd->query("SELECT * FROM utilisateurs WHERE Pseudonyme = $pseudo");
-	
-	    while ($donnees = $reponse->fetch())
-	    {
-	    	echo $donnees['Pseudonyme'] . ' ' . $donnees['Adresse_email'] . ' <br />';
-	    }
-	    
-	    $reponse->closeCursor();
-	    */
+			while ($donnees = $reponse->fetch())
+			{
+			   $email = $donnees['Adresse_email'];
+			}
+			
+			$reponse->closeCursor();
+
 			echo "<p><b>Nom d'utilsateur :</b> $pseudo <br/><br/>";
 			echo   "<b>Adresse de messagerie :</b> $email <br/>";
 		

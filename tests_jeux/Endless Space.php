@@ -15,7 +15,7 @@
 
 	<div class="fiche_jeu"> 
 	  <div class="presentation_jeu">
-        <p>dzzf</p>
+        <p>lhgjhhgf</p>
       </div>
 
 
@@ -26,7 +26,7 @@
 
 
       <div class="test_jeu">
-        <p>zdfzdf</p> 
+        <p>fgjkjhgfng</p> 
       </div>
     </div>  
 

@@ -15,7 +15,7 @@
 
 	<div class="fiche_jeu"> 
 	  <div class="presentation_jeu">
-        <p>fdsf</p>
+        <p>addsfds</p>
       </div>
 
 
@@ -26,7 +26,7 @@
 
 
       <div class="test_jeu">
-        <p>dfs</p> 
+        <p>sfdqdfgh</p> 
       </div>
     </div>  
 

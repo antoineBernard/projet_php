@@ -6,16 +6,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- j'importe ma jolie librairie Jquery pour faire de l'ajax (modifier des données HTML sans recharger la page -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- css de base de Jquery -->
+	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
+	<!-- j'importe ma jolie librairie Jquery et JqueryUI pour faire de l'ajax (modifier des données HTML sans recharger la page -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
 	
 	<!-- du javascript comme s'il en pleuvait-->
 	<script>
+	
+	//quand je doc est prêt, lors du click sur le bouton 1, tu charge le contenu du fichier txt dans la div #recherche avec des effets
 	$(document).ready(function(){
-	    $("#btn1").click(function(){
-	        $("#recherche").load("formulaire_trouve_jeu.txt");
+		//jquery pour le clique
+	    $("#recherche").click(function(){
+	        $("#recherche").load("formulaire_trouve_jeu.txt", function(){}).hide().fadeIn(2000);
 	    });
 	});
+	
 	</script>
 </head>
 <body>
@@ -29,7 +36,7 @@
   </div>
   
   <div class="recherche" id="recherche">
-			<button id="btn1">TROUVE TON JEU !</button>
+			<p id="btn1">TROUVE TON JEU</p>
   </div> 
   
 

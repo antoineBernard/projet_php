@@ -35,14 +35,14 @@
         die("Connection failed: " . $bdd->connect_error);
     } 
 
-    $reponse = $bdd->query('SELECT Pseudonyme, Adresse_email FROM utilisateurs');
-
-    while ($donnees = $reponse->fetch())
-    {
-    	echo $donnees['Pseudonyme'] . ' ' . $donnees['Adresse_email'] . ' <br />';
-    }
-    
-    $reponse->closeCursor();
+			$reponse = $bdd->query('SELECT Nom FROM jeux');
+			
+			while ($donnees = $reponse->fetch())
+			{
+			   echo $donnees['Nom']."<br>";
+			}
+			
+			$reponse->closeCursor();
 
 
 ?>
