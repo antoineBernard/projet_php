@@ -18,7 +18,7 @@
 	//quand je doc est prêt, lors du click sur le bouton 1, tu charge le contenu du fichier txt dans la div #recherche avec des effets
 	$(document).ready(function(){
 		//jquery pour le clique
-	    $("#recherche").click(function(){
+	    $("#btn1").click(function(){
 	        $("#recherche").load("formulaire_trouve_jeu.txt", function(){}).hide().fadeIn(2000);
 	    });
 	});
