@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!-- css de base de Jquery -->
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
 	<!-- j'importe ma jolie librairie Jquery et JqueryUI pour faire de l'ajax (modifier des données HTML sans recharger la page -->
@@ -19,10 +20,12 @@
 	$(document).ready(function(){
 		//jquery pour le clique
 	    $("#btn1").click(function(){
-	        $("#recherche").load("formulaire_trouve_jeu.txt", function(){}).hide().fadeIn(2000);
+	        $(this).hide();
+	        $("#recherche_generale").removeClass("hidden").fadeIn();
 	    });
 	});
 	
+
 	</script>
 </head>
 <body>
@@ -33,11 +36,52 @@
   <div class="boutons_navigation">
   	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
+
   </div>
-  
   <div class="recherche" id="recherche">
 			<p id="btn1">TROUVE TON JEU</p>
+			
+			<table id="recherche_generale" class="hidden">
+				<form method="post" action="Resultat_recherche.php">
+			    	<tr>
+			    		<td>
+				  			<label for="genre">Genre :</label><select name="genre">
+															<option>Action</option>
+															<option>Aventure</option>
+															<option>FPS</option>
+															<option>Jeu de rôles</option>
+															<option>Réflexion</option>		
+															<option>Simulation</option>
+															<option>Stratégie</option>
+															<option>Survival</option>						
+															</select>
+							</td>
+							<td>
+				  			<label for="univers">Univers :</label><select name="univers">
+															<option>Contemporain</option>
+															<option>Fantastique</option>
+															<option>Historique</option>
+															<option>Horreur</option>
+															<option>Science-fiction</option>
+															<option>Steampunk</option>
+															</select>	
+						</td>
+					</tr>
+					<tr>
+							<td>
+								<label for="annee_sortie">Sorti après :</label><input type="text" name="annee_sortie" placeholder="annee" style="width:20%;" maxlength="4"/>
+							</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" name="valider" value="Valider"/>
+						</td>
+					</tr>
+				</form>
+			</table>
+			
   </div> 
+  
   
     <div class="encadre">
       <div class="intitule">

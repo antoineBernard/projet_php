@@ -2,12 +2,12 @@
 <html>
 <head>
 	<title>Ajouter un jeu</title>
-    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
-		<div style="position:absolute;color:white;">
+		<div style="position:absolute;z-index:1;color:white;">
 		<?php
 			$nom_jeu=$_POST['nom_jeu'];
 			$studio=$_POST['studio'];
@@ -23,13 +23,7 @@
 			$studio=trim($studio);
 			$studio=preg_replace('/\s{2,}/',' ',$studio);	
 			$editeur=trim($editeur);
-			$editeur=preg_replace('/\s{2,}/',' ',$editeur);	
-			$genre=trim($genre);
-			$genre=preg_replace('/\s{2,}/',' ',$genre);
-			$genre=preg_replace('/\s{1,}-/','-',$genre);	
-			$univers=trim($univers);
-			$univers=preg_replace('/\s{2,}/',' ',$univers);
-			$univers=preg_replace('/\s{1,}-/','-',$univers);
+			$editeur=preg_replace('/\s{2,}/',' ',$editeur);
 			$description=trim($description);
 			$description=preg_replace('/\s{2,}/',' ',$description);
 			$test=trim($test);
@@ -114,7 +108,7 @@
 				$username = getenv('C9_USER');
     		    $password = "";
 				$database = "ProjetWeb";
-				$bdd=new PDO("mysql:host=$servername;dbname=$database",$username,$password);					
+				$bdd=new PDO("mysql:host=$servername;dbname=$database;charset=utf8",$username,$password);					
 			}
 			catch(Exception $e){
 				echo "Erreur de connexion avec la base : projetweb\n";
@@ -173,22 +167,22 @@
 			<label for="studio">Studio :</label><input type="text" name="studio" maxlength="40" required /><br><br>
 			<label for="editeur">Éditeur :</label><input type="text" name="editeur" maxlength="40" required /><br><br>
 			<label for="genre">Genre :</label><select name="genre">
-												<option>Action</option>
-												<option>Aventure</option>
-												<option>FPS</option>
-												<option>Jeu de rôles</option>
-												<option>Réflexion</option>		
-												<option>Simulation</option>
-												<option>Stratégie</option>
-												<option>Survival</option>						
+												<option value="Action">Action</option>
+												<option value="Aventure">Aventure</option>
+												<option value="FPS">FPS</option>
+												<option value="Jeu de rôles">Jeu de rôles</option>
+												<option value="Réflexion">Réflexion</option>		
+												<option value="Simulation">Simulation</option>
+												<option value="Stratégie">Stratégie</option>
+												<option value="Survival">Survival</option>						
 											  </select><br><br>	
 			<label for="univers">Univers :</label><select name="univers">
-													<option>Contemporain</option>
-													<option>Fantastique</option>
-													<option>Historique</option>
-													<option>Horreur</option>
-													<option>Science-fiction</option>
-													<option>Steampunk</option>
+													<option value="Contemporain">Contemporain</option>
+													<option value="Fantastique">Fantastique</option>
+													<option value="Historique">Historique</option>
+													<option value="Horreur">Horreur</option>
+													<option value="Science-fiction">Science-fiction</option>
+													<option value="Steampunk">Steampunk</option>
 												  </select><br><br>			
 			<label for="date_sortie">Année de sortie :</label><input type="text" name="date_sortie" maxlength="10" placeholder="jj/mm/yyyy" required /><br><br>
 			<label for="description">Description :</label><textarea name="description" placeholder="Description du jeu"required ></textarea><br><br>

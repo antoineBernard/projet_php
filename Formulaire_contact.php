@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
 	<?php
 	//j'ai fais un include pour alléger les répétitions de code
 		include 'bandeau.php';

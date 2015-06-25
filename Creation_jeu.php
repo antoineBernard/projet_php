@@ -145,9 +145,6 @@
 			{
 				echo "Ce jeu existe déjà !";
 			}
-		
-	
-	
 	?>
 
 </body>

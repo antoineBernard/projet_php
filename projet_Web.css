@@ -231,6 +231,28 @@ body{
   margin-bottom:0px;
 }
 
+#recherche_jeux_nom {
+  width: 200px;
+  font-size: 1em;
+}
+
+#resultats-autocompletion {
+	width: 204px;
+	display: absolute;
+	border: 1px solid #c0c0c0;
+}
+
+/*pour enlever la ligne en dessous du dernier element trouvé par l'auto completion
+, sinon il fera 2ligne (la bordure de l'item + la bordure de la liste d'item*/
+#resultats-autocompletion .item:last-child {
+  border-bottom: 0px;
+}
+/* je met du gris (je crois que c'est du gris ^^ sur l'élément de la liste choisi*/
+#resultats-autocompletion .item:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
 #recherche_generale{
   position:absolute;
   top:8%;
@@ -242,6 +264,10 @@ body{
 
 #recherche_generale label{
   margin-right:6%;
+}
+
+#recherche_generale.hidden{
+  display: none;
 }
 
 #inscription_utilisateur{
