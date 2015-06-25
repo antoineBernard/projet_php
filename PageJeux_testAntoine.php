@@ -1,3 +1,6 @@
+<?php
+	session_start ();//indispensable pour garder la connexion
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,13 +29,14 @@
     // Create connection
     $bdd = new PDO("mysql:host=$servername;dbname=$database;charset=utf8","$username", "$password");
     
-    //$id_jeu = $_SESSION['ID_jeu'];
+    $id_jeu = $_SESSION['ID_jeu'];
     
-			$reponse = $bdd->query('SELECT * FROM jeux WHERE ID_jeu= 17');
+			$reponse = $bdd->query("SELECT * FROM jeux WHERE ID_jeu= $id_jeu");
 
 			while ($donnees = $reponse->fetch())
 			{
 			   echo "<p> bienvenue sur la page du jeu : <b>".$donnees['Nom']."</b></br>";
+			   echo "l'id du jeu en variable de session : $id_jeu";
 			}
     ?>
 
