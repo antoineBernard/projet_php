@@ -1,3 +1,8 @@
+<?php
+	session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,35 +38,36 @@
 			}
 			else
 			{
-			  echo $genre." ".$univers." ".$annee;
-			  
+
 			  try
 			  {
-				  $servername = getenv('IP');
-				  $username = getenv('C9_USER');
-    		  $password = "";
-				  $database = "ProjetWeb";
-				  $bdd=new PDO("mysql:host=$servername;dbname=$database",$username,$password);
-		  	}
+		         include 'connexionBDD.php';
+		  	  }
 			  catch(Exception $e)
 			  {
 			  	echo "Erreur de connexion avec la base : projetweb\n";
 		  		echo 'Message : '.$e->getMessage()."\n";
 			  }
 			  
-			  $req = $bdd->prepare('SELECT Nom, Sortie, Nom_studio, Genre, Univers, URL FROM jeux WHERE Genre=:Genre AND Univers=:Univers');
+			  $req = $bdd->prepare('SELECT * FROM jeux WHERE Genre=:Genre AND Univers=:Univers');
 			  
 			  $criteres=array(
-			  	             ':Genre'=>$genre,
-			  	             ':Univers'=>$univers
+			  	             'Genre'=>$genre,
+			  	             'Univers'=>$univers
 			  	            );
-			  $req=execute($criteres);
+			  $req->execute($criteres);
 			  
-			  while($jeuTrouve = $criteres->fetch())
+			  //ici le 29 juin à minuit, bertrand à fait de la merde, non, bear_trand a résolu le problème
+			  while($jeuTrouve = $req->fetch())
 			  {
-			    echo $jeuTrouve['Nom']."\t".$jeuTrouve['Nom_studio']."\n";
-			    echo $jeuTrouve['Genre']."\t".$jeuTrouve['Univers']."\n";
-			    echo $jeuTrouve['Sortie']."\n\n";
+			  	?>
+			  	<table class="tableau_jeu">
+			  		<tr><td><?php echo $jeuTrouve['Nom'];?></td><td><?php echo $jeuTrouve['Nom_studio']; ?></td></tr>
+			  		<tr><td><?php echo $jeuTrouve['Genre']; ?></td><td><?php echo $jeuTrouve['Univers']; ?></td></tr>
+			  		<tr><td><?php echo $jeuTrouve['Sortie']; ?></td></tr>
+			  	</table><br>
+			  	<a href="PageJeux_testAntoine.php" class="bouton jeu">En savoir plus sur ce jeu</a>	
+			  	<?php
 			  }
 			  
 			  $req->closeCursor();

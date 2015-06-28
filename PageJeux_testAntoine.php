@@ -33,28 +33,34 @@
     
 			$reponse = $bdd->query("SELECT * FROM jeux WHERE ID_jeu= $id_jeu");
 
-			while ($donnees = $reponse->fetch())
-			{
-			   echo "<p> bienvenue sur la page du jeu : <b>".$donnees['Nom']."</b></br>";
+			$jeu = $reponse->fetch();
+			
+			   echo "<p> bienvenue sur la page du jeu : <b>".$jeu['Nom']."</b></br>";
 			   echo "l'id du jeu en variable de session : $id_jeu";
-			}
+			
     ?>
 
   
 	<div class="fiche_jeu"> 
 	  <div class="presentation_jeu">
-        >
+	    <?php
+        echo $jeu['Description'];
+      ?>
       </div>
 
 
 
       <div class="note_jeu">
-		17/20
+  		 <?php
+  		   echo $jeu['Note']."/20";
+  		 ?>
       </div>
 
 
       <div class="test_jeu">
-        
+         <?php
+           echo $jeu['Test'];
+         ?>
       </div>  
 
       <div class="commentaires_jeu">

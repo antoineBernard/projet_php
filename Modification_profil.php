@@ -27,7 +27,6 @@
    <div class="formulaire_utilisateur">
     <form action="Confirmation_modification_profil.php" method="post" id="modification_utilisateur">
 		<fieldset><legend>Remplissez vos modifications de profil</legend>
-			<label for="pseudo">Nouveau pseudo :</label><input type="text" name="pseudo" placeholder="votre pseudo" maxlength="30" required/><br><br>
 			<label for="mdp">Nouveau mot de passe :</label><input type="password" name="mdp" maxlength="30" placeholder="votre mot de passe" required/><br><br>
 			<label for="confirm_mdp">Nouveau mot de passe :</label><input type="password" name="confirm_mdp" maxlength="30" placeholder="confirmez votre mot de passe" required/><br><br>
 			<label for="email">Nouvelle adresse_mail :</label><input type="text" name="email" maxlength="60" placeholder="example@example.fr" required><br><br>

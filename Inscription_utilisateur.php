@@ -43,7 +43,7 @@
             {
         
                 //on crypte le mot de passe
-                $mot_de_passe_crypt = password_hash($mot_de_passe, PASSWORD_DEFAULT);;
+                $mot_de_passe_crypt = password_hash($mot_de_passe, PASSWORD_DEFAULT);
                 
                 //-----------------------on verifie si l'utilisateur n'existe pas déjà
                 //je prépare ma requête
@@ -75,7 +75,7 @@
                      $req->bind_param("sss", $pseudonyme, $mot_de_passe_crypt, $email);
                      $req->execute();
     
-                     ?>
+                     ?>$lmo
                      
                       <div class="nouveau_membre" >
                           <p>L'utilisateur à été ajouté !</p>

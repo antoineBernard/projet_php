@@ -28,20 +28,13 @@
 		include 'bandeau.php';
 		echo "user : ".$id_utilisateur;
 		
-		$new_pseudonyme = $_POST['pseudo'];
         $new_mot_de_passe = $_POST['mdp'];
         $new_confirm_mdp = $_POST['confirm_mdp'];
         $new_email = $_POST['email'];
         
-        if($new_mot_de_passe == $new_confirm_mdp)
+        if($new_mot_de_passe != $new_confirm_mdp)
         {
-        
-            $requette = "UPDATE utilisateurs SET Pseudonyme= '$new_pseudonyme', WHERE ID_utilisateur= $id_utilisateur";
-            
-            $prepare = $bdd->prepare($requette);
-    
-            // et bim on execute
-            $prepare->execute();
+            echo "imposible : les deux mots de passe saisies sont différents";
         }
         elseif (!(filter_var($new_email, FILTER_VALIDATE_EMAIL)))
         {
@@ -49,7 +42,15 @@
         }
         else
         {
-            echo "impossible : les deux mots de passe saisis sont différents";
+            //on crypte le mot de passe
+            $mot_de_passe_crypt = password_hash($new_mot_de_passe, PASSWORD_DEFAULT);
+                    
+            $requette = "UPDATE utilisateurs SET Mot_de_passe= '$mot_de_passe_crypt', Adresse_email='$new_email' WHERE ID_utilisateur= $id_utilisateur";
+            
+            $prepare = $bdd->prepare($requette);
+    
+            // et bim on execute
+            $prepare->execute();
         }
 		
     ?>

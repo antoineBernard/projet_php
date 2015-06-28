@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>Trouve ton jeu !</title>
-    <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
@@ -26,19 +26,16 @@
 	<div class="barre_resultat"></div>
 
 	<div class="jeux_suggeres">
-  	   <?php
+	   <?php
   	   
-  	    $servername = getenv('IP');
-		    $username = getenv('C9_USER');
-		    $password = "";
-		    $database = "ProjetWeb";
-		    $dbport = 3306;
-		
-		    // Create connection
-		    $bdd = new PDO("mysql:host=$servername;dbname=$database;charset=utf8","$username", "$password");
+	    include'connexionBDD.php';
 			
 			$nomJeu = $_POST['recherche_nom'];
-			$reponse = $bdd->query('SELECT * FROM jeux WHERE Nom= \''.$nomJeu.'\' ');
+			
+			//TODO : l'améliorer et faire qu'il puisse prendre plusieurs jeu avec LIKE (ex : Where Nom like '%space%')
+			$reponse = $bdd->query('SELECT * FROM jeux WHERE Nom like \''.$nomJeu.'\' ');
+			
+			
 			$id_jeu=-1;//j'initialise pour être sûr, mais la valeur sert à rien
 			while ($donnees = $reponse->fetch())
 			{
@@ -51,9 +48,7 @@
 			}
 			$_SESSION['ID_jeu'] = $id_jeu;
 		?>
-		<form method="post" action="PageJeux_testAntoine.php">
-			<input type="submit" value="En savoir plus sur ce jeux !" id="acces_page_jeux"/>
-		</form>
+  	<a href="PageJeux_testAntoine.php" class="bouton">En savoir plus sur ce jeu</a>	
 	</div>
 	
     <div class="footer">

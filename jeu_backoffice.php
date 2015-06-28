@@ -7,6 +7,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<?php
+	if(!empty($_POST['valider']))
+	{
+	?>
 		<div style="position:absolute;z-index:1;color:white;">
 		<?php
 			$nom_jeu=$_POST['nom_jeu'];
@@ -14,7 +18,8 @@
 			$editeur=$_POST['editeur'];
 			$genre=$_POST['genre'];
 			$univers=$_POST['univers'];
-			$date_sortie=$_POST['date_sortie'];	
+			$date_sortie=$_POST['date_sortie'];
+			$note=$_POST['note'];
 		    $description=$_POST['description'];
 			$test=$_POST['test'];
 			
@@ -36,11 +41,14 @@
 			$jour=substr($date_sortie,0,2);
 			$jour=(int)$jour;
 			
+			$ecrire=true;
+			
 			if($annee<1960 || $annee>2020)
 			{
 			?>
 		       Entrez une année valide !
 			<?php
+			   $ecrire=false;
 				
 			}
 			if($mois<1 || $mois>12)
@@ -48,66 +56,20 @@
 			?>
 				Entre un mois valide !
 			<?php
+			    $ecrire=false;
 			}
 			if($jour<1 || $jour>31 || ($jour>30 && ($mois==2 || $mois==4 || $mois==6 || $mois==9 || $mois==11)) || ($jour>28 && $mois==2 && $annee%4!=0))
 			{
 			?>
 				Entrez un jour valide !
 			<?php
+			    $ecrire=false;
 			}
-			if(!$nouv_jeu=fopen("tests_jeux/".$nom_jeu.".php","r"))
+			if($ecrire)
 			{
-				$url="tests_jeux/".$nom_jeu.".php";
-				$nouv_jeu=fopen($url,"w");
-				$page=("<!DOCTYPE html>
-<html>
-<head>
-	<title>Nom du jeu</title>
-    <meta charset=\"UTF-8\"/>
-	<link rel=\"stylesheet\" type=\"text/css\" href=\"../projet_Web.css\">
-	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-</head>
-  <body>
-  <div class=\"contenu\">
-    <?php
-	  //j'ai fais un include pour alléger les répétitions de code
-		include '../bandeau.php';
-    ?>
-   <div class=\"boutons_navigation\">
-  	 <a href=\"/Accueil.php\" class=\"bouton actif\" style=\"margin-right:10px;\">Accueil</a>
-  	 <a href=\"Top10.php\" class=\"bouton\">Top 10</a>	
-   </div>
 
-	<div class=\"fiche_jeu\"> 
-	  <div class=\"presentation_jeu\">
-        <p>".$description."</p>
-      </div>
-
-
-
-      <div class=\"note_jeu\">
-		17/20
-      </div>
-
-
-      <div class=\"test_jeu\">
-        <p>".$test."</p> 
-      </div>
-    </div>  
-
-      <div class=\"commentaires_jeu\">
-        <p>Commentaires d'utilisateurs</p>
-      </div>
-      
-    <div class=\"footer\">
-	  <a href=\"../Formulaire_contact.html\">Contact</a> / Réseaux sociaux
-    </div>
-  </div>
-  </body>
-</html>");
-			fprintf($nouv_jeu,"%s",$page);
-			fclose($nouv_jeu);
-			try{
+			try
+			{
 				$servername = getenv('IP');
 				$username = getenv('C9_USER');
     		    $password = "";
@@ -118,7 +80,7 @@
 				echo "Erreur de connexion avec la base : projetweb\n";
 				echo 'Message : '.$e->getMessage()."\n";
 			}			
-			$req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Genre, Univers, URL) VALUES(:Nom, :Sortie, :Nom_studio, :Genre, :Univers, :URL)');
+			$req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Genre, Univers, URL, Note, Description, Test) VALUES(:Nom, :Sortie, :Nom_studio, :Genre, :Univers, :URL, :Note, :Description, :Test)');
 
 			$ligne_jeu=array(
 							 'Nom'=>$nom_jeu,
@@ -126,7 +88,10 @@
 							 'Nom_studio'=>$studio,
 							 'Genre'=>$genre,
 							 'Univers'=>$univers,
-							 'URL'=>'localhost/ProjetWeb/'.$url
+							 'URL'=>'localhost/ProjetWeb/'.$url,
+							 'Note'=> $note,
+							 'Description' =>$description,
+							 'Test'=>$test
 							 );
 							 
 			echo $genre."   ".$univers."\n";
@@ -147,10 +112,7 @@
 			
 			echo "Page crée !";
 			}
-			else
-			{
-				echo "Ce jeu existe déjà !";
-			}
+	}
 	?>
 	</div>
 	
@@ -189,6 +151,27 @@
 													<option value="Steampunk">Steampunk</option>
 												  </select><br><br>			
 			<label for="date_sortie">Année de sortie :</label><input type="text" name="date_sortie" maxlength="10" placeholder="jj/mm/yyyy" required /><br><br>
+			<label for="note">Note :</label><select name="note"><option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+																<option value="6">6</option>
+																<option value="7">7</option>
+																<option value="8">8</option>
+																<option value="9">9</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+																<option value="13">13</option>
+																<option value="14">14</option>
+																<option value="15">15</option>
+																<option value="16">16</option>
+																<option value="17">17</option>
+																<option value="18">18</option>
+																<option value="19">19</option>
+																<option value="20">20</option>
+																</select><br><br>
 			<label for="description">Description :</label><textarea name="description" placeholder="Description du jeu"required ></textarea><br><br>
 			<label for="test">Test :</label><textarea name="test" placeholder="Test du jeu"required ></textarea><br><br>
 			

@@ -447,6 +447,11 @@ body{
   background-color:rgba(208,7,7,0.850);  
 }
 
+.jeu{
+  width:30%;
+  margin-left:50px;
+}
+
 #bouton_inscription{
   position: relative;
   margin-top: 30%;
@@ -526,6 +531,15 @@ body{
 #acces_page_jeux{
   padding: 10px 10px 10px 10px;
   width: 100%;
+}
+
+.tableau_jeu{
+  position:relative;
+  width:94%;
+  min-width:480px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:5px;
 }
 
 .autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
