@@ -11,14 +11,7 @@
            <?php
             
             //on se connecte à la base
-            $servername = getenv('IP');
-            $username = getenv('C9_USER');
-            $password = "";
-            $database = "ProjetWeb";
-            $dbport = 3306;
-        
-            // Create connection
-            $bdd = new mysqli($servername, $username, $password, $database, $dbport);
+            include'connexionBDD.php';
         
         
             // Check connection
@@ -27,37 +20,42 @@
             } 
             echo "Connected successfully (".$bdd->host_info.")";
             $pseudonyme = $_POST['pseudo'];
-            $mot_de_passe = $_POST['mdp'];
+            $mdpSaisie = $_POST['mdp'];
             
            
-            //on crypte le mot de passe
-            $mot_de_passe = crypt($mdp);
-            //on protége des injection js et html
-            $pseudonyme = htmlspecialchars($pseudonyme);
-            $reqVerif = $bdd->prepare('SELECT ID_utilisateur FROM utilisateurs WHERE Adresse_email = ? AND Mot_De_Passe = ?');
-          
-            $reqVerif->bind_param("ss",$email, $mot_de_passe);
-            //j'execute la requete et la range dans resultat
-            $resultat = $reqVerif->execute();
+            
+            $req1 = $bdd->prepare('SELECT ID_utilisateur, Mot_de_passe FROM utilisateurs 
+                                  WHERE Pseudonyme = :pseudo');
+            $req1->execute(array(
+                'pseudo' => $pseudonyme));
+            
+            $resultat = $req1->fetch();
+            
+            $mdpDeBDD = $resultat['Mot_de_passe'];
             
             //si le pseudo existe déjà en BDD
-            if($resultat)
+            if(!$resultat)
             {
-                session_start();
-                $_SESSION['ID_utilisateur'] = $resultat['ID_utilisateur'];
-                $_SESSION['Pseudonyme'] = $pseudonyme;
-                $pseudo = $_SESSION['Pseudonyme'];
-                echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";
+               echo "L'utilisateur n'existe pas"; 
             }
             else
             {
+                $verify = password_verify("boubou", $mdpDeBDD);
                 
-        ?>
-                  <div class="nouveau_membre" >
-                      <p>l'utilisateur n'existe pas !</p>
-                  </div>
-              <?php
-              
+                var_dump($verify);
+                //on verifie si le mot de passe est bon
+                if(password_verify($mdpSaisie, $mdpDeBDD))
+                {
+                    session_start();
+                    $_SESSION['ID_utilisateur'] = $resultat['ID_utilisateur'];
+                    $_SESSION['Pseudonyme'] = $pseudonyme;
+                    $pseudo = $_SESSION['Pseudonyme'];
+                    echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";
+                }
+                else
+                {
+                    echo "Mauvais mot de passe";
+                }
             }
       
               ?>

@@ -43,7 +43,7 @@
             {
         
                 //on crypte le mot de passe
-                $mot_de_passe = crypt($mdp);
+                $mot_de_passe_crypt = password_hash($mot_de_passe, PASSWORD_DEFAULT);;
                 
                 //-----------------------on verifie si l'utilisateur n'existe pas déjà
                 //je prépare ma requête
@@ -72,7 +72,7 @@
                 echo "regarde ICI ===> $pseudonyme"."<br>";
                      $req = $bdd->prepare('INSERT INTO utilisateurs(Pseudonyme, Mot_de_passe, Adresse_email, Date_inscription) VALUES(?, ?, ?, CURDATE())');
                      //"sss", car 3 paramètre bindé de type String
-                     $req->bind_param("sss", $pseudonyme, $mot_de_passe, $email);
+                     $req->bind_param("sss", $pseudonyme, $mot_de_passe_crypt, $email);
                      $req->execute();
     
                      ?>
