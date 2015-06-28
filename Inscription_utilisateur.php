@@ -92,6 +92,14 @@
                     }
                 }
             }
+            else
+            {
+                ?>
+                <div class="nouveau_membre" >
+                          <p>Les deux mot de passe inscrit sont différents !</p>
+                </div>
+                <?php
+            }
             
                   ?>
     

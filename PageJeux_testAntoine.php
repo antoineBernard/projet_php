@@ -61,9 +61,9 @@
         <p>Commentaires d'utilisateurs</p>
       </div>
       
+  </div>
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
     </div>
-  </div>
   </body>
 </html>

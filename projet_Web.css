@@ -240,6 +240,7 @@ body{
 	width: 204px;
 	display: absolute;
 	border: 1px solid #c0c0c0;
+	background-color: white;
 }
 
 /*pour enlever la ligne en dessous du dernier element trouvé par l'auto completion
@@ -270,7 +271,7 @@ body{
   display: none;
 }
 
-#inscription_utilisateur{
+#inscription_utilisateur, #modification_utilisateur{
   position:absolute;
   top:20%;
   left:25%;
@@ -384,7 +385,7 @@ body{
   margin-right:0px;
 }
 
-.nouveau_membre{
+.nouveau_membre, .modification_effectué{
   position:relative;
   background-color:#00D965;
   margin-left:auto;
@@ -452,7 +453,7 @@ body{
   margin-left: 28%;
 }
 
-#bouton_proposition, #bouton_connectu, #bouton_deconnexion{
+#bouton_proposition, #bouton_connectu, #bouton_deconnexion, #modification_profil{
   float:right;
   width:10%;
   min-width:140px;
@@ -468,11 +469,20 @@ body{
   border:solid 2px #FFFFFF;
   margin-left:10px;
 }
-#bouton_deconnexion{
+#bouton_deconnexion, #modification_profil{
   margin-top: 85%;
   margin-right: 10%;
   color : black;
   border-color : black;
+}
+
+#bouton_deconnexion:hover , #modification_profil:hover{
+  background-color: white;
+  cursor: pointer;
+}
+
+#modification_profil{
+  margin-top: 10%;
 }
 
 #bouton_connectu{

@@ -1,14 +1,6 @@
 <?php
 	session_start ();//indispensable pour garder la connexion
-    //on se connecte à la base
-    $servername = getenv('IP');
-    $username = getenv('C9_USER');
-    $password = "";
-    $database = "ProjetWeb";
-    $dbport = 3306;
-
-    // Create connection
-    $bdd = new PDO("mysql:host=$servername;dbname=$database;charset=utf8","$username", "$password");
+  include'connexionBDD.php';
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +49,9 @@
 		<img src="Images/sid.jpg" style="position:relative;clear:both;margin-top:15px;margin-left:20px;margin-right:auto;margin-right:auto;width:140px;height:140px;"/>
 		
 		<button>Modifier l'avatar</button>
-		<button>Modifier les informations de profil</button>
+		<form method="post "action="Modification_profil.php">
+				<input type="submit" value="Modifier les infos" id ="modification_profil"/>
+		</form>
 		
 		<div>
       	<!-- le bouton est en fait un formulaire qui envoit vers Deconnexion.php. Celui ci coupe la session et renvoi vers l'accueil-->
@@ -81,10 +75,8 @@
 			}
 			
 			$reponse->closeCursor();
-
 			echo "<p><b>Nom d'utilsateur :</b> $pseudo <br/><br/>";
 			echo   "<b>Adresse de messagerie :</b> $email <br/>";
-		
 		
 		?>
 		</p>

@@ -19,7 +19,6 @@ $( document ).ready(function() {
 			    	var texte = $(this).html();
 			    	$('#recherche_jeux_nom').val(texte);
 			    })
-
 			});
 		} else {
 			$('#resultats-autocompletion').html('');

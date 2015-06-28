@@ -28,7 +28,7 @@
 	<div class="jeux_suggeres">
   	   <?php
   	   
-  	       $servername = getenv('IP');
+  	    $servername = getenv('IP');
 		    $username = getenv('C9_USER');
 		    $password = "";
 		    $database = "ProjetWeb";

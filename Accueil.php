@@ -16,7 +16,7 @@
 	<!-- du javascript comme s'il en pleuvait-->
 	<script>
 	
-	//quand je doc est prêt, lors du click sur le bouton 1, tu charge le contenu du fichier txt dans la div #recherche avec des effets
+	//quand la page est chargé est prêt, lors du click sur le bouton 1, tu charge le contenu du fichier txt dans la div #recherche avec des effets
 	$(document).ready(function(){
 		//jquery pour le clique
 	    $("#btn1").click(function(){
