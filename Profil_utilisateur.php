@@ -2,6 +2,14 @@
 	session_start ();//indispensable pour garder la connexion
   include'connexionBDD.php';
 
+	$pseudo = $_SESSION['Pseudonyme'];
+	$reponse = $bdd->query('SELECT Admin FROM utilisateurs WHERE Pseudonyme= \''.$pseudo.'\' ');
+	$autorisation=-1;
+	
+	while ($donnees = $reponse->fetch())
+	{
+	   $autorisation = $donnees['Admin'];
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,11 +56,20 @@
 	
 		<img src="Images/sid.jpg" style="position:relative;clear:both;margin-top:15px;margin-left:20px;margin-right:auto;margin-right:auto;width:140px;height:140px;"/>
 		
-		<button>Modifier l'avatar</button>
+		
 		<form method="post "action="Modification_profil.php">
 				<input type="submit" value="Modifier les infos" id ="modification_profil"/>
 		</form>
-		
+<?php
+	if($autorisation == 1)
+	{
+?>
+		<form method="post "action="backoffice.php">
+				<input type="submit" value="Backoffice" id ="acces_backoffice"/>
+		</form>
+<?php	
+	}
+?>
 		<div>
       	<!-- le bouton est en fait un formulaire qui envoit vers Deconnexion.php. Celui ci coupe la session et renvoi vers l'accueil-->
   			<form method="post "action="Deconnexion.php">

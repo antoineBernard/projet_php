@@ -1,3 +1,16 @@
+<?php
+	session_start ();//indispensable pour garder la connexion
+    include'connexionBDD.php';
+
+	$pseudo = $_SESSION['Pseudonyme'];
+	$reponse = $bdd->query('SELECT Admin FROM utilisateurs WHERE Pseudonyme= \''.$pseudo.'\' ');
+	$autorisation=-1;
+	
+	while ($donnees = $reponse->fetch())
+	{
+	   $autorisation = $donnees['Admin'];
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +138,10 @@
   	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
-  
+<?php
+if($autorisation == 1)
+{
+?>  
    <div id="formulaire_jeu_backoffice">
     <form action="jeu_backoffice.php" method="post" id="ajout_jeu">
 		<fieldset><legend>Ajouter un jeu</legend>
@@ -179,6 +195,19 @@
 		</fieldset>
     </form>
    </div>
+<?php
+}
+else
+{
+	?>
+	<div class="erreur_admin">
+		<p>Vous n'avez pas les autorisations requises : profil administrateur</p>
+	</div>
+	
+	<?php
+}
+?>
+
    
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux

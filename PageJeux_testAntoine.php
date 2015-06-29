@@ -29,7 +29,9 @@
     // Create connection
     $bdd = new PDO("mysql:host=$servername;dbname=$database;charset=utf8","$username", "$password");
     
-    $id_jeu = $_SESSION['ID_jeu'];
+    //$id_jeu = $_SESSION['ID_jeu'];
+    
+    $id_jeu = $_POST['jeu_choisi'];
     
 			$reponse = $bdd->query("SELECT * FROM jeux WHERE ID_jeu= $id_jeu");
 

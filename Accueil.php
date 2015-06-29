@@ -38,6 +38,7 @@
   	<a href="Top10.php" class="bouton">Top 10</a>	
 
   </div>
+
   <div class="recherche" id="recherche">
 			<p id="btn1">TROUVE TON JEU</p>
 			
@@ -79,9 +80,9 @@
 					</tr>
 				</form>
 			</table>
-			
+		
   </div> 
-  
+
   
     <div class="encadre">
       <div class="intitule">
