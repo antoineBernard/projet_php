@@ -16,7 +16,7 @@
 		include 'bandeau.php';
     ?>
   <div class="boutons_navigation">
-  	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
+  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
 	<div class="notre_selection">
@@ -63,20 +63,27 @@
 			  $i=0;
 			  while($jeuTrouve[$i] = $req->fetch())
 			  {
-			  	?>
-			  	<table class="tableau_jeu">
-			  		<tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
-			  		<tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
-			  		<tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$jeuTrouve[$i]['ID_jeu']; ?></td></tr>
-			  	</table><br>
+			  	$annee_jeu=substr($jeuTrouve[$i]['Sortie'],-4);
+			    $annee_jeu=(int)$annee_jeu;
 			  	
-			  	<form method="post" action="PageJeux_testAntoine.php">
-			  		<input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
-			  		<input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
-			  	</form>
-			  	<br><hr/><br>
+			  	if($annee_jeu>=$annee)
+			  	{
+			  	
+			  	?>
+			  	  <table class="tableau_jeu">
+			  	      <tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
+			  		  <tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
+			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$jeuTrouve[$i]['ID_jeu']; ?></td></tr>
+			  	  </table><br>
+
+			  	  <form method="post" action="PageJeux_testAntoine.php">
+			  	      <input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
+			  		  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
+			  	  </form>
+			  	  <br><hr/><br>
 			  	
 			  	<?php
+			  	}
 			  	$i++;
 			  }
 			  
@@ -97,7 +104,7 @@
 			$id_jeu=-1;//j'initialise pour être sûr, mais la valeur sert à rien
 			while ($donnees = $reponse->fetch())
 			{
-				 $id_jeu = $donnees['ID_jeu'];
+			   $id_jeu = $donnees['ID_jeu'];
 			   echo "<p> Jeu : <b>".$donnees['Nom']."</b></br>";
 			   echo "Studio : ".$donnees['Nom_studio']."</br>";
 			   echo "Genre : ".$donnees['Genre']."</br>";

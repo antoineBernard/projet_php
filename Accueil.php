@@ -43,7 +43,7 @@
 			<p id="btn1">TROUVE TON JEU</p>
 			
 			<table id="recherche_generale" class="hidden">
-				<form method="post" action="Resultat_recherche.php">
+				<form method="post" action="Resultat_recherche_bandeau.php">
 			    	<tr>
 			    		<td>
 				  			<label for="genre">Genre :</label><select name="genre">

@@ -33,12 +33,15 @@
 if($autorisation == 1)
 {
 ?>
+	<div class="notre_selection">
+		Backoffice
+	</div>
 	   <div id="formulaire_jeu_backoffice">
 		 <form method="post "action="jeu_backoffice.php">
 			<input type="submit" value="Ajouter un jeu" id ="acces_backoffice"/>
 		 </form>
 		 
-		 <form method="post "action="jeu_backoffice.php">
+		 <form method="post "action="utilisateur_backoffice.php">
 			<input type="submit" value="Ajouter un Admin" id ="acces_backoffice"/>
 		 </form>
 	   </div>

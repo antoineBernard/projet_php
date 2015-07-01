@@ -254,6 +254,9 @@ body{
   background-color: #f2f2f2;
   cursor: pointer;
 }
+input{
+  cursor: pointer;
+}
 
 #recherche_generale{
   position:absolute;
@@ -357,7 +360,7 @@ body{
   width:60%;
 }
 
-#formulaire_jeu_backoffice{
+#formulaire_jeu_backoffice, #formulaire_ajout_commentaire{
   position:relative;
   margin-top:70px;
   margin-left:auto;
@@ -368,7 +371,7 @@ body{
   max-width:800px;
 }
 
-#ajout_jeu{
+#ajout_jeu,#ajout_commentaire{
   margin-right:0px;
 }
 
@@ -378,7 +381,12 @@ body{
   min-width:120px;
 }
 
-#ajout_jeu textarea{
+#ajout_commentaire label{
+  display:inline-block;
+  min-width:60px;
+}
+
+#ajout_jeu textarea,#ajout_commentaire textarea{
   display:block;
   min-height:80px;
   min-width:700px;
@@ -453,6 +461,13 @@ body{
   margin-left:50px;
 }
 
+.commentaire{
+  position:relative;
+  margin-top:10px;
+  float:right;
+  width:200px;
+}
+
 #bouton_inscription{
   position: relative;
   margin-top: 30%;
@@ -490,6 +505,16 @@ body{
 
 .erreur_admin{
   background-color: red;
+}
+#tableau_utilisateurs{
+    margin-top: 15%;
+    margin-left: 5%;
+}
+.tableau_utilisateurs{
+  border-collapse: collapse;
+}
+.tableau_utilisateurs td, th{
+  border: 1px solid black;
 }
 
 #bouton_deconnexion:hover , #modification_profil:hover, #acces_backoffice:hover{

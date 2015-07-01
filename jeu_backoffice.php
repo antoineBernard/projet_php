@@ -93,35 +93,26 @@
 				echo "Erreur de connexion avec la base : projetweb\n";
 				echo 'Message : '.$e->getMessage()."\n";
 			}			
-			$req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Genre, Univers, URL, Note, Description, Test) VALUES(:Nom, :Sortie, :Nom_studio, :Genre, :Univers, :URL, :Note, :Description, :Test)');
+			$req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Editeur, Genre, Univers, Note_redaction, Note, Description, Test,Nombre_notes) VALUES(:Nom, :Sortie, :Nom_studio, :Editeur, :Genre, :Univers, :Note_redaction, :Note, :Description, :Test, :Nombre_notes)');
 
 			$ligne_jeu=array(
 							 'Nom'=>$nom_jeu,
 							 'Sortie'=>$date_sortie,
 							 'Nom_studio'=>$studio,
+							 'Editeur'=>$editeur,
 							 'Genre'=>$genre,
 							 'Univers'=>$univers,
-							 'URL'=>'localhost/ProjetWeb/'.$url,
+							 'Note_redaction'=>$note,
 							 'Note'=> $note,
 							 'Description' =>$description,
-							 'Test'=>$test
+							 'Test'=>$test,
+							 'Nombre_notes'=>1
 							 );
 							 
-			echo $genre."   ".$univers."\n";
 			
 			$req->execute($ligne_jeu);	
 
-			/*
-			$req->bindParam(':Nom',$nom_jeu);
-			$req->bindParam(':Sortie',$date_sortie);
-			$req->bindParam(':Nom_studio',$studio);
-			$req->bindParam(':Genre',$genre);
-			$req->bindParam(':Univers',$univers);
-			$req->bindParam(':URL',$url);
-			  
-			$req->execute();
-			*/
-			$req->closecursor();
+			$req->closeCursor();
 			
 			echo "Page crée !";
 			}
