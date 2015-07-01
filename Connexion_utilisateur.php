@@ -24,7 +24,7 @@
             
            
             
-            $req1 = $bdd->prepare('SELECT ID_utilisateur, Mot_de_passe FROM utilisateurs 
+            $req1 = $bdd->prepare('SELECT Mot_de_passe FROM utilisateurs 
                                   WHERE Pseudonyme = :pseudo');
             $req1->execute(array(
                 'pseudo' => $pseudonyme));
@@ -47,7 +47,9 @@
                 if(password_verify($mdpSaisie, $mdpDeBDD))
                 {
                     session_start();
-                    $_SESSION['ID_utilisateur'] = $resultat['ID_utilisateur'];
+                    
+                    //Le code qui suit est très étrange ^^
+                    
                     $_SESSION['Pseudonyme'] = $pseudonyme;
                     $pseudo = $_SESSION['Pseudonyme'];
                     echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";

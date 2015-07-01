@@ -2,11 +2,11 @@
 	session_start();
 	include'connexionBDD.php';
 	
-	$reponse = $bdd->query('SELECT ID_utilisateur FROM utilisateurs WHERE Pseudonyme= \''.$_SESSION['Pseudonyme'].'\' ');
+	$reponse = $bdd->query('SELECT Pseudonyme FROM utilisateurs WHERE Pseudonyme= \''.$_SESSION['Pseudonyme'].'\' ');
 	
 	while ($donnees = $reponse->fetch())
 	{
-	   $id_utilisateur = $donnees['ID_utilisateur'];
+	   $pseudo = $donnees['Pseudonyme'];
 	}
 	
 	$reponse->closeCursor();
@@ -26,7 +26,7 @@
 
 	<?php
 		include 'bandeau.php';
-		echo "user : ".$id_utilisateur;
+		echo "user : ".$pseudo;
 		
         $new_mot_de_passe = $_POST['mdp'];
         $new_confirm_mdp = $_POST['confirm_mdp'];
@@ -45,14 +45,20 @@
             //on crypte le mot de passe
             $mot_de_passe_crypt = password_hash($new_mot_de_passe, PASSWORD_DEFAULT);
                     
-            $requette = "UPDATE utilisateurs SET Mot_de_passe= '$mot_de_passe_crypt', Adresse_email='$new_email' WHERE ID_utilisateur= $id_utilisateur";
+            $requette = $bdd->prepare('UPDATE utilisateurs SET Mot_de_passe=:Mot_de_passe, Adresse_email=:Adresse_email WHERE Pseudonyme=:Pseudonyme');
             
-            $prepare = $bdd->prepare($requette);
-    
+            $ligne=array(
+                         'Mot_de_passe'=>$mot_de_passe_crypt,
+                         'Adresse_email'=>$new_email,
+                         'Pseudonyme'=>$pseudo
+                        );
+            
             // et bim on execute
-            $prepare->execute();
+            $requette->execute($ligne);
+            $requette->closeCursor();
+
         }
-		
+
     ?>
   <div class="boutons_navigation">
   	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>

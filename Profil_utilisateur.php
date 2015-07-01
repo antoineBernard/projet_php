@@ -38,7 +38,6 @@
 		  else
 		  {
 		    $pseudo = $_SESSION['Pseudonyme'];
-		    $ID_utilisateur = $_SESSION['ID_utilisateur'];
 	    ?>
 		    <a href="Profil_utilisateur.php" id="bouton_connectu"> <?php echo $pseudo; ?> connecté !</a>
 		    <?php

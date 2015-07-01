@@ -74,6 +74,7 @@
 			  	      <tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
 			  		  <tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
 			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$jeuTrouve[$i]['ID_jeu']; ?></td></tr>
+			  		  <tr><td><?php echo 'Note : '.$jeuTrouve[$i]['Note']; ?></td></tr>
 			  	  </table><br>
 
 			  	  <form method="post" action="PageJeux_testAntoine.php">

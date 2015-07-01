@@ -36,12 +36,12 @@
 
       $id_jeu=$_POST['retour_commentaire'];
       
-      $req_comm = $bdd->prepare('INSERT INTO commentaire (ID_jeu,ID_utilisateur,Commentaire,Note) VALUES (:ID_jeu,:ID_utilisateur,:Commentaire,:Note)');
+      $req_comm = $bdd->prepare('INSERT INTO commentaire (ID_jeu,Pseudo_utilisateur,Commentaire,Note) VALUES (:ID_jeu,:Pseudo_utilisateur,:Commentaire,:Note)');
       
       $ligne_comm=array(
                         //'Date_commentaire'=>getdate(),
                         'ID_jeu'=>$id_jeu,
-                        'ID_utilisateur'=>$_SESSION['ID_utilisateur'],
+                        'Pseudo_utilisateur'=>$_SESSION['Pseudonyme'],
                         'Commentaire'=>$_POST['commentaire'],
                         'Note'=>$_POST['note']
                        );
@@ -67,7 +67,7 @@
       
       $nouvNbNote=$jeu['Nombre_notes']+1;
 
-      $nouvNote=round($sommeNotes/$nouvNbNote);
+      $nouvNote=round($sommeNotes/$nouvNbNote,1);
       
       $req_note=$bdd->prepare("UPDATE jeux SET Note=$nouvNote,Nombre_notes=$nouvNbNote WHERE ID_jeu=$id_jeu");
       $req_note->execute();
@@ -110,10 +110,18 @@
     	  if($_SESSION['Pseudonyme'])
     	  {
     	    include 'connexionBDD.php';
+
+    	    $utilisateur=$_SESSION['Pseudonyme'];
+
     	    
-    	    $id_utilisateur=$_SESSION['ID_utilisateur'];
-    	    
-    	    $req_comm=$bdd->query("SELECT * FROM commentaire WHERE ID_jeu=$id_jeu AND ID_utilisateur=$id_utilisateur");
+    	    $req_comm=$bdd->prepare('SELECT * FROM commentaire WHERE ID_jeu=:ID_jeu AND Pseudo_utilisateur=:Pseudo_utilisateur');
+          
+          $var_req=array(
+                         'ID_jeu'=>$id_jeu,
+                         'Pseudo_utilisateur'=>$utilisateur
+                        );
+          
+          $req_comm->execute($var_req);
     	    
     	    if(!$bidon=$req_comm->fetch())
     	    {
@@ -142,7 +150,7 @@
         $curseur=0;
         $i=0;
         ?>
-        <table>
+        <table class="commentaires_page_jeu">
           <tr>
           <?php 
           while($i<count($commentaires) && $i<($curseur+2))
@@ -150,7 +158,7 @@
             $comm=$commentaires[$i];
             $i++;
             ?>
-            <td><?php echo $comm['Commentaire']."<br>".$comm['ID_utilisateur']; ?></td>  
+            <td><p><?php echo $comm['Commentaire']."<br><i>".$comm['Pseudo_utilisateur']."</i>"; ?></p></td>  
           <?php
           }
           $curseur+=2;
@@ -163,7 +171,7 @@
             $comm=$commentaires[$i];
             $i++;
             ?>
-            <td><?php echo $comm['Commentaire']."\n".$comm['ID_utilisateur']; ?></td>  
+            <td><p><?php echo $comm['Commentaire']."<br><i>".$comm['Pseudo_utilisateur']."</i>"; ?></p></td>  
           <?php
           }
           $curseur+=2;
@@ -173,8 +181,8 @@
       </div>
       
   </div>
-    <div class="footer">
+  <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
-    </div>
-  </body>
+  </div>
+</body>
 </html>

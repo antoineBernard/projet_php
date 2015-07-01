@@ -81,36 +81,82 @@
 				</form>
 			</table>
 		
-  </div> 
+  </div>
+  
+    <?php
+    
+     include 'fonctions.php';
+
+    ?>
 
   
     <div class="encadre">
+    	<?php
+				/*
+				$jeuDuMois=null;
+    	  $faire=null;
+    	  if(date("d")!=02)
+    	  {
+    	   $faire=true;
+    	  }
+    	  if(date("d")==01 && $faire==true)
+    	  {
+    	   $jeuDuMois=choixJeuxNomine();
+    	   $faire=false;
+    	  }
+    	
+    	 */
+    	 include 'connexionBDD.php';
+    	 
+    	 $reqJeuMois=$bdd->query("SELECT * FROM jeux WHERE Jeu_mois=1");
+    	 $jeuDuMois=$reqJeuMois->fetch();
+    	 
+    	?>
       <div class="intitule">
-        <p>Jeu du mois</p>
+        Jeu du mois
 	  </div>
 	  <div class="imgjms">
 	    <img src="Images/Endless_Space_Box_Art_No_Age_Rating.jpg" style="height:100%;width:100%;"/>
 	  </div>
 	  <div class="titre">	   
-	     <p>L'âge de glace</p>
+	     <?php echo $jeuDuMois['Nom'] ?>
 	  </div>
+		<div class="clear"></div>	  
 	  <div class="resume">
-	    <p>Ici sera écrit le résume du jeu du mois.</p>
+	    <p><?php echo $jeuDuMois['Description'] ?></p>
+	    <form method="post" action="PageJeux_testAntoine.php">
+			  <input type="hidden" name="jeu_choisi" value="<?php echo $jeuDuMois['ID_jeu']; ?>"/>
+			  <input type="submit" class="bouton jeu_nomine" name="valider" value="En savoir plus sur ce jeu"/>
+			  <div class="clear"></div>
+			</form>
 	  </div>
     </div>
 	 
 	<div class="encadre">
-      <div class="intitule">
-        <p>Jeu de la semaine</p>
+		  <?php
+    	 include 'connexionBDD.php';
+    	 
+    	 $reqJeuSemaine=$bdd->query("SELECT * FROM jeux WHERE Jeu_semaine=1");
+    	 $jeuSemaine=$reqJeuSemaine->fetch();
+    	 
+    	?>
+    <div class="intitule">
+        Jeu de la semaine
 	  </div>
 	  <div class="imgjms">
 	    <img src="Images/sid.jpg" style="height:100%;width:100%;"/>
 	  </div>
 	  <div class="titre">	   
-	     <p>L'âge de glace</p>
+	     <?php echo $jeuSemaine['Nom'] ?>
 	  </div>
+			<div class="clear"></div>
   	  <div class="resume">
-	    <p>Ici sera écrit le résume du jeu de la semaine.</p>
+	    <p><?php echo $jeuSemaine['Description'] ?></p>
+	    <form method="post" action="PageJeux_testAntoine.php">
+			   <input type="hidden" name="jeu_choisi" value="<?php echo $jeuSemaine['ID_jeu']; ?>"/>
+			  <input type="submit" class="bouton jeu_nomine" name="valider" value="En savoir plus sur ce jeu"/>
+			  <div class="clear"></div>
+			</form>
 	  </div>
     </div>
     <div class="clear"></div>	

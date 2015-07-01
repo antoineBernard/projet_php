@@ -47,7 +47,7 @@
                 
                 //-----------------------on verifie si l'utilisateur n'existe pas déjà
                 //je prépare ma requête
-                $reqVerif = $bdd->prepare('SELECT ID_utilisateur FROM utilisateurs WHERE Adresse_email = ?');
+                $reqVerif = $bdd->prepare('SELECT Pseudonyme FROM utilisateurs WHERE Adresse_email = ?');
                 //on met qu'un "s car il n'y a qu'un seul paramètre bindé de type String"
                 $reqVerif->bind_param("s",$email);
                 //j'execute la requete

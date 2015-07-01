@@ -19,7 +19,41 @@
 	<div class="barre_resultat"></div>
 
 	<div class="jeux_suggeres">
+
+	<?php
+	  include 'connexionBDD.php';
+	  
+	  $extraction=$bdd->query('SELECT * FROM jeux ORDER BY Note DESC');
+	  
+	  $tab_jeu=null;
+	  
+	  for($i=0;$i<10;$i++)
+	  {
+	  	if($tab_jeux[$i]=$extraction->fetch())
+	  	{
+	  	?>
+		  
+		  <table class="tableau_jeu">
+		      <tr><td><?php echo 'Jeu : '.$tab_jeux[$i]['Nom'];?></td><td><?php echo 'Studio : '.$tab_jeux[$i]['Nom_studio']; ?></td></tr>
+			  <tr><td><?php echo 'Genre :'.$tab_jeux[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$tab_jeux[$i]['Univers']; ?></td></tr>
+			  <tr><td><?php echo 'Sortie : '.$tab_jeux[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$tab_jeux[$i]['ID_jeu']; ?></td></tr>
+			  <tr><td><?php echo 'Note : '.$tab_jeux[$i]['Note']; ?></td></tr>
+		  </table><br>
+
+		  <form method="post" action="PageJeux_testAntoine.php">
+		      <input type="hidden" name="jeu_choisi" value="<?php echo $tab_jeux[$i]['ID_jeu']; ?>"/>
+			  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
+		  </form>
+		  <br><hr/><br>
+	<?php
+	  	}
+	  }
+	  $extraction->closeCursor();
+    ?>
 	
+
+
+
 	</div>
 	
     <div class="footer">
