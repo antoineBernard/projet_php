@@ -4,7 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php
+  <title>Top 10</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="projet_Web.css">
+  <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>	
+</head>
+<body>
+ <div class="contenu">
+  <?php
 	//j'ai fais un include pour alléger les répétitions de code
 		include 'bandeau.php';
  	 ?>
@@ -37,14 +44,14 @@
 		      <tr><td><?php echo 'Jeu : '.$tab_jeux[$i]['Nom'];?></td><td><?php echo 'Studio : '.$tab_jeux[$i]['Nom_studio']; ?></td></tr>
 			  <tr><td><?php echo 'Genre :'.$tab_jeux[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$tab_jeux[$i]['Univers']; ?></td></tr>
 			  <tr><td><?php echo 'Sortie : '.$tab_jeux[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$tab_jeux[$i]['ID_jeu']; ?></td></tr>
-			  <tr><td><?php echo 'Note : '.$tab_jeux[$i]['Note']; ?></td></tr>
+			  <tr><td><?php echo 'Note : <b>'.$tab_jeux[$i]['Note'].'<b>'; ?></td></tr>
 		  </table><br>
 
 		  <form method="post" action="PageJeux_testAntoine.php">
 		      <input type="hidden" name="jeu_choisi" value="<?php echo $tab_jeux[$i]['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
 		  </form>
-		  <br><hr/><br>
+		  <br><hr/>
 	<?php
 	  	}
 	  }
@@ -55,9 +62,10 @@
 
 
 	</div>
-	
+
+  </div>
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
-    </div>
+    </div>	
   </body>
 </html>

@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Accueil</title>
+	<title>Test</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  <div class="contenu">
   	<?php
 	//j'ai fais un include pour alléger les répétitions de code
 		  include 'bandeau.php';
@@ -33,46 +34,67 @@
     
     if(!$id_jeu = $_POST['jeu_choisi'])
     {
+      $req_comm=$bdd->prepare('SELECT * FROM commentaire WHERE ID_jeu=:ID_jeu AND Pseudo_utilisateur=:Pseudo_utilisateur');
+          
+      $var_req=array(
+                     'ID_jeu'=>$id_jeu,
+                     'Pseudo_utilisateur'=>$utilisateur
+                    );
+          
+      $req_comm->execute($var_req);
+    	    
+    	if(!$bidon=$req_comm->fetch())
+    	{
+    	     
+        $id_jeu=$_POST['retour_commentaire'];
+      
+        $req_comm = $bdd->prepare('INSERT INTO commentaire (ID_jeu,Pseudo_utilisateur,Commentaire,Note) VALUES (:ID_jeu,:Pseudo_utilisateur,:Commentaire,:Note)');
+      
+        $ligne_comm=array(
+                          //'Date_commentaire'=>getdate(),
+                          'ID_jeu'=>$id_jeu,
+                          'Pseudo_utilisateur'=>$_SESSION['Pseudonyme'],
+                          'Commentaire'=>$_POST['commentaire'],
+                          'Note'=>$_POST['note']
+                         );
+        $req_comm->execute($ligne_comm);
+        $req_comm->closeCursor();
+        
+        $req_note=$bdd->query("SELECT Note_redaction,Nombre_notes FROM jeux WHERE ID_jeu=$id_jeu");
+      
+        $jeu=$req_note->fetch();
+      
+        $req_note->closeCursor();
+      
+        $req_moyenne=$bdd->query("SELECT Note FROM commentaire WHERE ID_jeu=$id_jeu");
+      
+        $sommeNotes=$jeu['Note_redaction'];
+      
+        while($noteCommentaire = $req_moyenne->fetch())
+        {
+          $sommeNotes=$sommeNotes+$noteCommentaire['Note'];
+        }
+      
+        $req_moyenne->closeCursor();
+      
+        $nouvNbNote=$jeu['Nombre_notes']+1;
 
-      $id_jeu=$_POST['retour_commentaire'];
+        $nouvNote=round($sommeNotes/$nouvNbNote,1);
       
-      $req_comm = $bdd->prepare('INSERT INTO commentaire (ID_jeu,Pseudo_utilisateur,Commentaire,Note) VALUES (:ID_jeu,:Pseudo_utilisateur,:Commentaire,:Note)');
-      
-      $ligne_comm=array(
-                        //'Date_commentaire'=>getdate(),
-                        'ID_jeu'=>$id_jeu,
-                        'Pseudo_utilisateur'=>$_SESSION['Pseudonyme'],
-                        'Commentaire'=>$_POST['commentaire'],
-                        'Note'=>$_POST['note']
-                       );
-      $req_comm->execute($ligne_comm);
-      $req_comm->closeCursor();
-      
-      $req_note=$bdd->query("SELECT Note_redaction,Nombre_notes FROM jeux WHERE ID_jeu=$id_jeu");
-      
-      $jeu=$req_note->fetch();
-      
-      $req_note->closeCursor();
-      
-      $req_moyenne=$bdd->query("SELECT Note FROM commentaire WHERE ID_jeu=$id_jeu");
-      
-      $sommeNotes=$jeu['Note_redaction'];
-      
-      while($noteCommentaire = $req_moyenne->fetch())
-      {
-        $sommeNotes=$sommeNotes+$noteCommentaire['Note'];
-      }
-      
-      $req_moyenne->closeCursor();
-      
-      $nouvNbNote=$jeu['Nombre_notes']+1;
-
-      $nouvNote=round($sommeNotes/$nouvNbNote,1);
-      
-      $req_note=$bdd->prepare("UPDATE jeux SET Note=$nouvNote,Nombre_notes=$nouvNbNote WHERE ID_jeu=$id_jeu");
-      $req_note->execute();
-      $req_note->closeCursor();
-    }
+        $req_note=$bdd->prepare("UPDATE jeux SET Note=$nouvNote,Nombre_notes=$nouvNbNote WHERE ID_jeu=$id_jeu");
+        $req_note->execute();
+        $req_note->closeCursor();
+    	}
+    	else
+    	{
+    	  ?>
+    	  <div style="backgroun:yellow;position:absolute;top=20%;left=40%,width=20%;min-width=160px,min-height:80px;">
+    	    Vous ne pouvez pas poster deux commentaires sur un même jeu !
+    	  </div>
+    	  <?php
+    	}
+    	  
+     }
 
 			$reponse = $bdd->query("SELECT * FROM jeux WHERE ID_jeu= $id_jeu");
 
@@ -90,7 +112,7 @@
         echo $jeu['Description'];
       ?>
       </div>
-
+      <hr/>
 
 
       <div class="note_jeu">
@@ -136,6 +158,7 @@
     	    $req_comm->closeCursor();
     	  }
       ?>
+      <hr/>
       <div class="commentaires_jeu">
         <?php
         include 'connexionBDD.php';
@@ -158,7 +181,7 @@
             $comm=$commentaires[$i];
             $i++;
             ?>
-            <td><p><?php echo $comm['Commentaire']."<br><i>".$comm['Pseudo_utilisateur']."</i>"; ?></p></td>  
+            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i>"; ?></p></td>  
           <?php
           }
           $curseur+=2;
@@ -171,7 +194,7 @@
             $comm=$commentaires[$i];
             $i++;
             ?>
-            <td><p><?php echo $comm['Commentaire']."<br><i>".$comm['Pseudo_utilisateur']."</i>"; ?></p></td>  
+            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i>"; ?></p></td>  
           <?php
           }
           $curseur+=2;
@@ -183,6 +206,7 @@
   </div>
   <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+  </div>
   </div>
 </body>
 </html>

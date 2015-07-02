@@ -12,7 +12,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
+  <div class="contenu">
     <?php
 	//j'ai fais un include pour alléger les répétitions de code
 		include 'bandeau.php';
@@ -38,5 +38,6 @@
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
     </div>
+ </div>
 </body>
 </html>

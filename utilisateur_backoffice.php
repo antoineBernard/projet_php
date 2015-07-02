@@ -17,33 +17,16 @@
 	<title>Ajouter un jeu</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
-      
-	    
-	        <!-- jQuery -->
-    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-      
-    <!-- DataTables -->
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
 	    
 
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 	
-	<script>
-	
-	//le Jquery pour dynamiser le tableau avec Datatable
-		//Quand le document est prêt
-	    $(document).ready(function(){
-  		 	 $('#tableau_user').DataTable();
-		} );
 
-	</script>
 
 </head>
 	<body>
-		
+  <div class="contenu">		
 		<?php
 		//j'ai fais un include pour alléger les répétitions de code
 			include 'bandeau.php';
@@ -60,6 +43,91 @@ if($autorisation == 1)
 		Utilisateurs :
 	</div>
 	
+	   
+<?php
+
+		if(isset($_POST['new_admin']))
+		{
+			$user = $_POST['new_admin'];
+			
+            $requette = $bdd->prepare('UPDATE utilisateurs SET Admin = 1 WHERE Pseudonyme=:Pseudonyme');
+            
+            $ligne=array('Pseudonyme'=>$user);
+            
+            // et bim on execute
+            $requette->execute($ligne);
+            $requette->closeCursor();
+			
+			echo "<div class='ajout_admin'>";
+			echo $user." à été rajouté comme Administrateur !";
+			echo "</div>";
+		}
+		elseif(isset($_POST['erase_admin']))
+		{
+			$user = $_POST['erase_admin'];
+			$effaceSoitMeme = false;
+			
+			if($user == $pseudo)
+			{
+				$effaceSoitMeme = true;
+			}
+			
+
+			
+			if($effaceSoitMeme)
+			{
+				echo "<div class='erreur_erase_admin'>";
+				echo $user." vous ne pouvez pas vous retirer les droits administrateur !";
+				echo "</div>";
+			}
+			else
+			{
+	            $requette = $bdd->prepare('UPDATE utilisateurs SET Admin = 0 WHERE Pseudonyme=:Pseudonyme');
+            
+	            $ligne=array('Pseudonyme'=>$user);
+	            
+	            // et bim on execute
+	            $requette->execute($ligne);
+	            $requette->closeCursor();
+				echo "<div class='ajout_admin'>";
+				echo $user." à perdu les droits Administrateur !";
+				echo "</div>";
+			}
+		}
+		elseif(isset($_POST['supp_user']))
+		{
+			$user = $_POST['supp_user'];
+			$effaceSoitMeme = false;
+			if($user == $pseudo)
+			{
+				$effaceSoitMeme = true;
+			}
+		
+			
+			if($effaceSoitMeme)
+			{
+				echo "<div class='erreur_erase_admin'>";
+				echo $user." vous ne pouvez pas vous supprimer !";
+				echo "</div>";
+			}
+			else
+			{
+	            $requette = $bdd->prepare('DELETE FROM utilisateurs WHERE Pseudonyme=:Pseudonyme');
+            
+	            $ligne=array('Pseudonyme'=>$user);
+	            
+	            // et bim on execute
+	            $requette->execute($ligne);
+	            $requette->closeCursor();
+				echo "<div class='ajout_admin'>";
+				echo $user." à été supprimé!";
+				echo "</div>";
+			}
+			
+		}
+	
+?>
+	
    <div id="tableau_utilisateurs">
 		<table id="tableau_user" class="tableau_utilisateurs">
 		<thead>
@@ -68,18 +136,18 @@ if($autorisation == 1)
 				<th>Email</th>
 				<th>Date_inscription</th>
 				<th>Administrateur</th>
-				<th>Action</th>
+
 			</tr>
 		</thead>
 			<tbody>
 				<?php
-				$req = $bdd->query('SELECT * FROM utilisateurs');
+				$req = $bdd->query('SELECT * FROM utilisateurs ORDER BY Admin DESC');
 				$admin = " ";
 				while($utilisateur = $req->fetch())
 				{
 					$_SESSION['pseudo_nouveau_admin'] = $utilisateur['Pseudonyme']; 
 					if($utilisateur['Admin']==1)
-						$admin = "OUI";
+						$admin = "<b>OUI</b>";
 					
 					else
 						$admin = " ";
@@ -91,24 +159,37 @@ if($autorisation == 1)
 						echo "<td>".$admin."</td>";
 						echo "<td>";
 						?>
-						 <form method="post "action="">
-							<button type="submit" value="<?php echo $utilisateur['Pseudonyme']; ?>">Nouvel administrateur</button>
+						 <form method="post" action="utilisateur_backoffice.php">
+							<button type="submit" name="new_admin" value="<?php echo $utilisateur['Pseudonyme']; ?>">Ajouter droit administrateur</button>
+						 </form>
+						<?php					
+						echo "</td>";
+						echo "<td>";
+						?>
+						 <form method="post" action="utilisateur_backoffice.php">
+							<button type="submit" name="erase_admin" value="<?php echo $utilisateur['Pseudonyme']; ?>">retirer droit administrateur</button>
+						 </form>
+						<?php					
+						echo "</td>";
+						echo "<td>";
+						?>
+						 <form method="post" action="utilisateur_backoffice.php">
+							<button type="submit" name="supp_user" value="<?php echo $utilisateur['Pseudonyme']; ?>">supprimer l'utilisateur</button>
 						 </form>
 						<?php					
 						echo "</td>";
 					echo "</tr>";
-					
-	
 				}
 				?>
 			</tbody>
 		
 		</table>
    </div>
-	   
-	    <div class="footer">
-		  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
-	    </div>
+
+ </div>  
+    <div class="footer">
+	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+    </div>
 
 
 	</body>

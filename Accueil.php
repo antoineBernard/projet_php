@@ -29,6 +29,7 @@
 	</script>
 </head>
 <body>
+	<div class="contenu">
 	<?php
 	//j'ai fais un include pour alléger les répétitions de code
 		include 'bandeau.php';
@@ -162,15 +163,71 @@
     <div class="clear"></div>	
  
     <div class="commentaires">
-	  <p style="font-size:50px;">Tout plein de commentaires ici !</p>
+	  <?php
+	  
+	  include 'connexionBDD.php';
+	  
+	  $extractComms=$bdd->prepare("SELECT commentaire.Commentaire,commentaire.Pseudo_utilisateur,jeux.Nom FROM commentaire,jeux WHERE commentaire.Note>=15 AND commentaire.ID_jeu=jeux.ID_jeu ORDER BY uuid()");
+	  $extractComms->execute();
+	  
+      while($commentaires[]=$extractComms->fetch())
+      {
+      }	  
+	  
+      $curseur=0;
+      $i=0;
+      
+      ?>
+        <table class="commentaires_accueil">
+          <tr>
+          <?php 
+          while($i<(count($commentaires)-1) && $i<($curseur+3))
+          {
+            $comm=$commentaires[$i];
+            $i++;
+            ?>
+            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></p></td>  
+          <?php
+          }
+          $curseur+=3;
+          ?>
+          </tr>
+          <tr>
+          <?php
+          while($i<(count($commentaires)-1) && $i<($curseur+3))
+          {
+            $comm=$commentaires[$i];
+            $i++;
+            ?>
+            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></p></td>  
+          <?php
+          }
+          $curseur+=3;
+          ?>
+          </tr>
+          <tr>
+          <?php
+          while($i<(count($commentaires)-1) && $i<($curseur+3))
+          {
+            $comm=$commentaires[$i];
+            $i++;
+            ?>
+            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></p></td>  
+          <?php
+          }
+          $curseur+=3;
+          ?>
+          </tr>
+        </table>     
     </div>
   
     <div class="defilement_commentaires">
       <img src="Images/bouton_defilement.jpg" style="height:100%;width:100%"/>
     </div>
-  
+
+  </div>
     <div class="footer">
-	  <a href="Formulaire_contact.php">Contact</a> / Réseaux sociaux
-    </div>
+	    <a href="Formulaire_contact.php">Contact</a> / Réseaux sociaux
+    </div>  
 </body>
 </html>

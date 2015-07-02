@@ -7,6 +7,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
+   <div class="contenu">
         <div style="position:absolute;top:110px;left:15px;">
            <?php
             
@@ -105,5 +106,6 @@
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
     </div>
-    </body>
+  </div>    
+</body>
 </html>

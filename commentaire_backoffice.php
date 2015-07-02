@@ -16,8 +16,12 @@
 <head>
 	<title>Ajouter un jeu</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    
+
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+	
+
 </head>
 	<body>
 		
@@ -34,26 +38,57 @@ if($autorisation == 1)
 {
 ?>
 	<div class="notre_selection">
-		Backoffice
+		Commentaires :
 	</div>
-	   <div id="formulaire_jeu_backoffice">
-		 <form method="post "action="jeu_backoffice.php">
-			<input type="submit" value="Ajouter un jeu" id ="acces_backoffice"/>
-		 </form>
-		 
-		 <form method="post "action="utilisateur_backoffice.php">
-			<input type="submit" value="Gestion utilisateurs" id ="acces_backoffice"/>
-		 </form>
-		 
-		 
- 	 	<form method="post "action="commentaire_backoffice.php">
-			<input type="submit" value="Gestion des commentaires" id ="acces_backoffice"/>
-		 </form>
-	   </div>
-	   
-	    <div class="footer">
-		  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
-	    </div>
+	
+	
+   <div id="tableau_utilisateurs">
+		<table id="tableau_commentaires" class="tableau_utilisateurs">
+		<thead>
+			<tr>
+				<th>ID_commentaire</th>
+				<th>Pseudo_utilisateur</th>
+				<th>ID_jeu</th>
+				<th>Commentaire</th>
+
+			</tr>
+		</thead>
+			<tbody>
+				<?php
+				$req = $bdd->query('SELECT * FROM commentaire');
+				$jeu = " ";
+				
+				while($commentaire = $req->fetch())
+				{
+					$req2 = $bdd->prepare('SELECT Nom FROM jeux WHERE ID_jeu= ?');
+					$req2->execute(array($commentaire['ID_jeu']));
+					
+					while($donnees = $req2->fetch())
+					{
+						$jeu = $donnees['Nom'];
+					}
+					
+				//	while ($donnees = $req2->fetch()){$jeu = $donnees['Nom'];}
+						
+					echo "<tr>";
+						echo "<td>".$commentaire['ID_commentaire']."</td>";
+						echo "<td>".$commentaire['Pseudo_utilisateur']."</td>";
+						echo "<td>".$jeu."</td>";
+						echo "<td>".$commentaire['Commentaire']."</td>";
+					echo "</tr>";
+				}
+				?>
+			</tbody>
+		
+		</table>
+   </div>
+
+   
+    <div class="footer">
+	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+    </div>
+
+
 	</body>
 <?php
 }
@@ -67,4 +102,5 @@ else
 	<?php
 }
 ?>
+
 </html>

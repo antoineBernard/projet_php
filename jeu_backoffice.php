@@ -20,6 +20,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  <div class="contenu">
 	<?php
 	if(!empty($_POST['valider']))
 	{
@@ -116,9 +117,12 @@
 			
 			echo "Page crée !";
 			}
+	?>
+	 </div>
+	<?php
 	}
 	?>
-	</div>
+	
 	
 	
 	<?php
@@ -129,12 +133,12 @@
   	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
-<?php
-if($autorisation == 1)
-{
-?>  
-   <div id="formulaire_jeu_backoffice">
-    <form action="jeu_backoffice.php" method="post" id="ajout_jeu">
+  <?php
+  if($autorisation == 1)
+  {
+  ?>  
+     <div id="formulaire_jeu_backoffice">
+      <form action="jeu_backoffice.php" method="post" id="ajout_jeu">
 		<fieldset><legend>Ajouter un jeu</legend>
 			<label for="nom_jeu">Nom du jeu :</label><input type="text" name="nom_jeu" maxlength="50" required /><br><br>
 			<label for="studio">Studio :</label><input type="text" name="studio" maxlength="40" required /><br><br>
@@ -186,20 +190,19 @@ if($autorisation == 1)
 		</fieldset>
     </form>
    </div>
-<?php
-}
-else
-{
+  <?php
+  }
+  else
+  {
 	?>
 	<div class="erreur_admin">
 		<p>Vous n'avez pas les autorisations requises : profil administrateur</p>
 	</div>
 	
 	<?php
-}
-?>
-
-   
+  }
+  ?>
+ </div>
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
     </div>

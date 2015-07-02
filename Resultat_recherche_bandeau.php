@@ -10,7 +10,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
   <body>
-
+  <div class="contenu">
 	<?php
 	//j'ai fais un include pour alléger les répétitions de code
 		include 'bandeau.php';
@@ -81,7 +81,7 @@
 			  	      <input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
 			  		  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
 			  	  </form>
-			  	  <br><hr/><br>
+			  	  <br><hr/>
 			  	
 			  	<?php
 			  	}
@@ -99,28 +99,38 @@
 			$nomJeu = $_POST['recherche_nom'];
 			
 			//TODO : l'améliorer et faire qu'il puisse prendre plusieurs jeu avec LIKE (ex : Where Nom like '%space%')
-			$reponse = $bdd->query('SELECT * FROM jeux WHERE Nom like \''.$nomJeu.'\' ');
+			$reponse = $bdd->prepare('SELECT * FROM jeux WHERE Nom like :Nom');
 			
+			$tab_reponse=array('Nom'=>"%".$nomJeu."%");
 			
-			$id_jeu=-1;//j'initialise pour être sûr, mais la valeur sert à rien
-			while ($donnees = $reponse->fetch())
+			$reponse->execute($tab_reponse);
+			
+			$i=0;
+			while ($jeuTrouve[$i] = $reponse->fetch())
 			{
-			   $id_jeu = $donnees['ID_jeu'];
-			   echo "<p> Jeu : <b>".$donnees['Nom']."</b></br>";
-			   echo "Studio : ".$donnees['Nom_studio']."</br>";
-			   echo "Genre : ".$donnees['Genre']."</br>";
-			   echo "Univers : ".$donnees['Univers']."</p></br>";
-			   
+			 ?>
+			  	  <table class="tableau_jeu">
+			  	      <tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
+			  		  <tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
+			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$jeuTrouve[$i]['ID_jeu']; ?></td></tr>
+			  		  <tr><td><?php echo 'Note : '.$jeuTrouve[$i]['Note']; ?></td></tr>
+			  	  </table><br>
+
+			  	  <form method="post" action="PageJeux_testAntoine.php">
+			  	      <input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
+			  		  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
+			  	  </form>
+			  	  <br><hr/>
+			<?php 
+			  $i++;
 			}
-			$_SESSION['ID_jeu'] = $id_jeu;
-		  ?>
-  	  <a href="PageJeux_testAntoine.php" class="bouton">En savoir plus sur ce jeu</a>		 
-  	 <?php
+		$reponse->closeCursor();
 	   }
 	   ?>
 
 	</div>
-	
+
+  </div>
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
     </div>

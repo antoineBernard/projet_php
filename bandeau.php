@@ -16,7 +16,8 @@
     <body>
     
     	<div class="bandeau">
-          <form id="recherche_nom_form" method="post" action="Resultat_recherche_bandeau.php">
+    	    <!--  autocomplete off pour empêcher le navigateur de proposer des jeux déjà saisie auparavant (dessus le systeme d'autocompletion du site-->
+          <form id="recherche_nom_form" method="post" action="Resultat_recherche_bandeau.php" autocomplete="off">
             <input type="text" value="" name="recherche_nom" placeholder="Rechercher par nom" id="recherche_jeux_nom"/>
                 <!--on prepare les valeurs d'auto completion-->
                 <div id="resultats-autocompletion">
