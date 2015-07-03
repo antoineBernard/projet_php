@@ -67,6 +67,7 @@
     <div class="modification_effectué" >
       <p>Modification effectué ! Vous pouvez maintenant vous reconnecter :) </p>
       
+      
         	<!-- le bouton est en fait un formulaire qui envoit vers Deconnexion.php. Celui ci coupe la session et renvoi vers l'accueil-->
   		<form method="post "action="Deconnexion.php">
   			<input type="submit" value="Retourner à l'accueil" id ="bouton"/>

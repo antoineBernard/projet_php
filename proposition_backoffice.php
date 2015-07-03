@@ -17,14 +17,16 @@
 	<title>Ajouter un jeu</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     
+	    
 
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 	
 
+
 </head>
 	<body>
-		
+  <div class="contenu">		
 		<?php
 		//j'ai fais un include pour alléger les répétitions de code
 			include 'bandeau.php';
@@ -38,66 +40,60 @@ if($autorisation == 1)
 {
 ?>
 	<div class="notre_selection">
-		Commentaires :
+		Proposition de jeux :
 	</div>
+	
+	   
 <?php
 
-		if(isset($_POST['supp_commentaire']))
+		if(isset($_POST['new_admin']))
 		{
-			$IDcommentaire = $_POST['supp_commentaire'];
+			$user = $_POST['new_admin'];
 			
-            $requette = $bdd->prepare('DELETE FROM commentaire WHERE ID_commentaire= :IDcommentaire');
+            $requette = $bdd->prepare('UPDATE utilisateurs SET Admin = 1 WHERE Pseudonyme=:Pseudonyme');
             
-            $ligne=array('IDcommentaire'=>$IDcommentaire);
+            $ligne=array('Pseudonyme'=>$user);
             
             // et bim on execute
             $requette->execute($ligne);
             $requette->closeCursor();
 			
 			echo "<div class='ajout_admin'>";
-			echo "Commentaire à été supprimé !";
+			echo $user." à été rajouté comme Administrateur !";
 			echo "</div>";
 		}
+		
+	
 ?>
 	
    <div id="tableau_utilisateurs">
-		<table id="tableau_commentaires" class="tableau_utilisateurs">
+		<table id="tableau_user" class="tableau_utilisateurs">
 		<thead>
 			<tr>
-				<th>Jeu</th>
-				<th>Utilisateur</th>
-				<th>Commentaire</th>
-
+				<th>ID</th>
+				<th>Contributeur</th>
+				<th>Nom du jeu</th>
+				<th>Studio</th>
+				<th>Genre</th>
+				<th>Email du contributeur</th>
+				<th>Message</th>
 			</tr>
 		</thead>
 			<tbody>
 				<?php
-				$req = $bdd->query('SELECT * FROM commentaire ORDER BY ID_jeu, Pseudo_utilisateur');
-				$jeu = " ";
-				
-				while($commentaire = $req->fetch())
+				$req = $bdd->query('SELECT * FROM proposition_jeux ORDER BY Date_proposition DESC');
+
+				while($proposition = $req->fetch())
 				{
-					$req2 = $bdd->prepare('SELECT Nom FROM jeux WHERE ID_jeu= ?');
-					$req2->execute(array($commentaire['ID_jeu']));
-					
-					while($donnees = $req2->fetch())
-					{
-						$jeu = $donnees['Nom'];
-					}
-						
 					echo "<tr>";
-						echo "<td>".$jeu."</td>";
-						echo "<td>".$commentaire['Pseudo_utilisateur']."</td>";
-						echo "<td>".$commentaire['Commentaire']."</td>";
-						echo "<td>";
-						?>
-						 <form method="post" action="commentaire_backoffice.php">
-							<button type="submit" name="supp_commentaire" value="<?php echo $commentaire['ID_commentaire']; ?>">Supprimer</button>
-						 </form>
-						<?php					
-						echo "</td>";
-						
-						
+						echo "<td>".$proposition['ID_proposition']."</td>";
+						echo "<td>".$proposition['Nom_contributeur']."</td>";
+						echo "<td>".$proposition['Jeu']."</td>";
+						echo "<td>".$proposition['Studio']."</td>";
+						echo "<td>".$proposition['Genre']."</td>";
+						echo "<td>".$proposition['Adresse_email']."</td>";
+						echo "<td>".$proposition['Message_contributeur']."</td>";
+
 					echo "</tr>";
 				}
 				?>
@@ -106,7 +102,7 @@ if($autorisation == 1)
 		</table>
    </div>
 
-   
+ </div>  
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
     </div>

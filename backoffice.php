@@ -49,6 +49,11 @@ if($autorisation == 1)
  	 	<form method="post "action="commentaire_backoffice.php">
 			<input type="submit" value="Gestion des commentaires" id ="acces_backoffice"/>
 		 </form>
+		 
+		 
+  	 	<form method="post "action="proposition_backoffice.php">
+			<input type="submit" value="Voir les propositions de jeux" id ="acces_backoffice"/>
+		 </form>
 	   </div>
 	   
 	    <div class="footer">

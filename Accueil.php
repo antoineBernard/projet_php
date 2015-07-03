@@ -16,6 +16,11 @@
 	<!-- du javascript comme s'il en pleuvait-->
 	<script>
 	
+//je cache le formulaire au chargement de la page (comme ça si l'utilisateur désactive javascript, il pourra quand même utiliser le formulaire)
+		$(document).ready(function(){
+        $("#recherche_generale").addClass("hidden")
+	});
+	
 	//quand la page est chargé est prêt, lors du click sur le bouton 1, tu charge le contenu du fichier txt dans la div #recherche avec des effets
 	$(document).ready(function(){
 		//jquery pour le clique
@@ -43,7 +48,7 @@
   <div class="recherche" id="recherche">
 			<p id="btn1">TROUVE TON JEU</p>
 			
-			<table id="recherche_generale" class="hidden">
+			<table id="recherche_generale">
 				<form method="post" action="Resultat_recherche_bandeau.php">
 			    	<tr>
 			    		<td>

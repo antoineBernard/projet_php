@@ -69,7 +69,6 @@
                     if(filter_var($email, FILTER_VALIDATE_EMAIL))
                     {
                     //insertion dans la base
-                echo "regarde ICI ===> $pseudonyme"."<br>";
                      $req = $bdd->prepare('INSERT INTO utilisateurs(Pseudonyme, Mot_de_passe, Adresse_email, Date_inscription) VALUES(?, ?, ?, CURDATE())');
                      //"sss", car 3 paramètre bindé de type String
                      $req->bind_param("sss", $pseudonyme, $mot_de_passe_crypt, $email);

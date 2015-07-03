@@ -49,11 +49,14 @@
                 {
                     session_start();
                     
-                    //Le code qui suit est très étrange ^^
                     
                     $_SESSION['Pseudonyme'] = $pseudonyme;
-                    $pseudo = $_SESSION['Pseudonyme'];
-                    echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";
+                    
+                    // $pseudo = $_SESSION['Pseudonyme'];
+                    // echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";
+                    
+                    // On redirige le visiteur vers la page d'accueil
+                     header ('Location: /Accueil.php');
                 }
                 else
                 {

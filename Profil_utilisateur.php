@@ -64,7 +64,7 @@
 	{
 ?>
 		<form method="post "action="backoffice.php">
-				<input type="submit" value="Backoffice" id ="acces_backoffice"/>
+				<input type="submit" value="Backoffice" id ="bouton_backoffice"/>
 		</form>
 <?php	
 	}
