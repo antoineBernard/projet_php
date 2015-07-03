@@ -20,30 +20,10 @@
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
- <div class="contenu">
-	<div class="bandeau">
-      <form id="recherche_nom_form" method="post" action="Resultat_recherche.php">
-        <input type="text" name="recherche_nom" placeholder="Rechercher par nom"/>
-      </form>
-		  <a href="Accueil.php"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
-		  <a href="Proposition_jeu.php" id="bouton_proposition">Propose ton jeu</a>
-		  
+	  
 		<?php
-		  if(session_status() == PHP_SESSION_NONE)
-		  {
-	    ?>
-        <a href="Connexion_utilisateur.html" id="bouton_proposition">Se connecter</a>
-        <?php
-      }
-		  else
-		  {
-		    $pseudo = $_SESSION['Pseudonyme'];
-	    ?>
-		    <a href="Profil_utilisateur.php" id="bouton_connectu"> <?php echo $pseudo; ?> connecté !</a>
-		    <?php
-		  }
-            ?>
-    </div>
+			include 'bandeau.php';
+        ?>
   
   <div class="boutons_navigation">
 	<a href="Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
@@ -53,7 +33,36 @@
 	
 	<div class="avatar_actions_utilisateur">
 	
-		<img src="Images/sid.jpg" style="position:relative;clear:both;margin-top:15px;margin-left:20px;margin-right:auto;margin-right:auto;width:140px;height:140px;"/>
+	<?php
+	if(!empty($_POST['valider']))
+	{
+		$destination="Images/".$_FILES['image']['name'];
+			
+		$telechargement=move_uploaded_file($_FILES['image']['tmp_name'],$destination);
+		
+		$req = $bdd->prepare('UPDATE utilisateurs SET url_avatar =:url_avatar WHERE Pseudonyme= \''.$pseudo.'\'');
+	
+		$ligne_jeu=array(
+						 'url_avatar'=>$destination
+						 );
+						 
+		$req->execute($ligne_jeu);	
+	
+		$req->closeCursor();
+	}
+
+		$reponse = $bdd->query('SELECT * FROM utilisateurs WHERE Pseudonyme=  \''.$pseudo.'\' ');
+
+		$user = $reponse->fetch();
+	
+
+	?>
+		<img src="<?php echo $user['url_avatar']; ?>" style="position:relative;clear:both;margin-top:15px;margin-left:20px;margin-right:auto;margin-right:auto;max-width:140px;min-height:140px;"/>
+
+		<form action="Profil_utilisateur.php" method="post" id="changementAvatar" enctype="multipart/form-data">
+			<input type="file" name="image" required/><br><br>
+			<input type="submit" name="valider" value="Valider" style="margin-right:4%;"/><br>
+		</form>
 		
 		
 		<form method="post "action="Modification_profil.php">

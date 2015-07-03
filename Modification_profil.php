@@ -29,7 +29,7 @@
 		<fieldset><legend>Remplissez vos modifications de profil</legend>
 			<label for="mdp">Nouveau mot de passe :</label><input type="password" name="mdp" maxlength="30" placeholder="votre mot de passe" required/><br><br>
 			<label for="confirm_mdp">Nouveau mot de passe :</label><input type="password" name="confirm_mdp" maxlength="30" placeholder="confirmez votre mot de passe" required/><br><br>
-			<label for="email">Nouvelle adresse_mail :</label><input type="text" name="email" maxlength="60" placeholder="example@example.fr" required><br><br>
+			<label for="email">Nouvelle adresse_mail :</label><input type="text" name="email" maxlength="60" placeholder="example@example.fr"><br><br>
 			<input type="submit" name="valider" value="Valider" style="margin-right:4%;"/><input type="reset" name="annuler" value="Vider le formulaire"/><br>
 		</fieldset>
     </form>

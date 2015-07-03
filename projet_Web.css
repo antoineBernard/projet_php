@@ -476,7 +476,7 @@ input{
   width:10%;
   min-width:140px;
   height:40px;
-  margin-top:30px;
+  margin-top:20px;
   margin-right:25px;
   line-height:40px;
   text-align:center;
@@ -488,7 +488,7 @@ input{
   margin-left:10px;
 }
 #bouton_deconnexion, #modification_profil{
-  margin-top: 85%;
+  margin-top: 50%;
   margin-right: 10%;
   color : black;
   border-color : black;
