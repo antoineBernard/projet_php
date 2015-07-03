@@ -25,7 +25,7 @@
 
 
 </head>
-	<body>
+<body>
   <div class="contenu">		
 		<?php
 		//j'ai fais un include pour alléger les répétitions de code
@@ -46,24 +46,22 @@ if($autorisation == 1)
 	   
 <?php
 
-		if(isset($_POST['new_admin']))
+		if(isset($_POST['traite']))
 		{
-			$user = $_POST['new_admin'];
+			$ID = $_POST['traite'];
 			
-            $requette = $bdd->prepare('UPDATE utilisateurs SET Admin = 1 WHERE Pseudonyme=:Pseudonyme');
+            $requette = $bdd->prepare('UPDATE proposition_jeux SET traite = 1 WHERE ID_proposition=:ID_proposition');
             
-            $ligne=array('Pseudonyme'=>$user);
+            $ligne=array('ID_proposition'=>$ID);
             
             // et bim on execute
             $requette->execute($ligne);
             $requette->closeCursor();
 			
 			echo "<div class='ajout_admin'>";
-			echo $user." à été rajouté comme Administrateur !";
+			echo "La proposition n° : ".$ID." à été marqué comme traité !";
 			echo "</div>";
 		}
-		
-	
 ?>
 	
    <div id="tableau_utilisateurs">
@@ -77,6 +75,7 @@ if($autorisation == 1)
 				<th>Genre</th>
 				<th>Email du contributeur</th>
 				<th>Message</th>
+				<th>Traité par un admin</th>
 			</tr>
 		</thead>
 			<tbody>
@@ -85,6 +84,11 @@ if($autorisation == 1)
 
 				while($proposition = $req->fetch())
 				{
+					if($proposition['traite']==1)
+						$traite = "<b>OUI</b>";
+					else
+						$traite = " ";
+					
 					echo "<tr>";
 						echo "<td>".$proposition['ID_proposition']."</td>";
 						echo "<td>".$proposition['Nom_contributeur']."</td>";
@@ -93,7 +97,14 @@ if($autorisation == 1)
 						echo "<td>".$proposition['Genre']."</td>";
 						echo "<td>".$proposition['Adresse_email']."</td>";
 						echo "<td>".$proposition['Message_contributeur']."</td>";
-
+						echo "<td>".$traite."</td>";
+						echo "<td>";
+						?>
+						 <form method="post" action="proposition_backoffice.php">
+							<button type="submit" name="traite" value="<?php echo $proposition['ID_proposition']; ?>">J'ai traité cette proposition</button>
+						 </form>
+						<?php	
+						echo "</td>";
 					echo "</tr>";
 				}
 				?>
@@ -108,7 +119,7 @@ if($autorisation == 1)
     </div>
 
 
-	</body>
+</body>
 <?php
 }
 else

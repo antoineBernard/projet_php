@@ -23,8 +23,8 @@
 	
 
 </head>
-	<body>
-		
+<body>
+  <div class="contenu">		
 		<?php
 		//j'ai fais un include pour alléger les répétitions de code
 			include 'bandeau.php';
@@ -105,7 +105,7 @@ if($autorisation == 1)
 		
 		</table>
    </div>
-
+</div>
    
     <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux

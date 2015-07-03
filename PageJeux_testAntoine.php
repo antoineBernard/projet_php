@@ -108,7 +108,9 @@
   
 	<div class="fiche_jeu"> 
 	  <div class="presentation_jeu">
-	    <?php
+
+	      <img src="<?php echo $jeu['Jaquette']; ?>" style="margin-right:10px;max-width:100px;min-height:80px;"/>
+	   	    <?php
         echo $jeu['Description'];
       ?>
       </div>
@@ -127,7 +129,7 @@
            echo $jeu['Test'];
          ?>
       </div>
-      
+
     	<?php
     	  if($_SESSION['Pseudonyme'])
     	  {
@@ -152,7 +154,7 @@
     	        <input type="hidden" name="jeu_commentaire" value="<?php echo $jeu['ID_jeu']; ?>"/>
     	        <input type="submit" class="bouton commentaire" name="ajouterComm" value="Ajoute un commentaire !"/>
     	     </form>
-    	     <div class="clear"></div>
+    	     <div class="clear"></div><br>
     	    <?php
     	    }
     	    $req_comm->closeCursor();
@@ -204,9 +206,9 @@
       </div>
       
   </div>
-  <div class="footer">
-	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
-  </div>
-  </div>
+</div>
+<div class="footer">
+  <a href="Formulaire_contact.php">Contact</a>
+</div>
 </body>
 </html>

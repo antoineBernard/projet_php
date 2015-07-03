@@ -36,7 +36,7 @@
 			$note=$_POST['note'];
 		    $description=$_POST['description'];
 			$test=$_POST['test'];
-			
+
 			$nom_jeu=trim($nom_jeu);
 			$nom_jeu=preg_replace('/\s{2,}/',' ',$nom_jeu);
 			$studio=trim($studio);
@@ -93,8 +93,23 @@
 			catch(Exception $e){
 				echo "Erreur de connexion avec la base : projetweb\n";
 				echo 'Message : '.$e->getMessage()."\n";
-			}			
-			$req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Editeur, Genre, Univers, Note_redaction, Note, Description, Test,Nombre_notes) VALUES(:Nom, :Sortie, :Nom_studio, :Editeur, :Genre, :Univers, :Note_redaction, :Note, :Description, :Test, :Nombre_notes)');
+			}
+			//echo $_FILES['image']['tmp_name'];
+			
+			$destination="Images/".$_FILES['image']['name'];
+			
+			$telechargement=move_uploaded_file($_FILES['image']['tmp_name'],$destination);
+			
+			if($telechargement)
+			{
+			  echo "Téléchargement réussi !";
+			}
+			else
+			{
+			  echo "Echec du téléchargement !";	
+			}
+			
+			$req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Editeur, Genre, Univers, Note_redaction, Note, Description, Test,Nombre_notes,Jaquette) VALUES(:Nom, :Sortie, :Nom_studio, :Editeur, :Genre, :Univers, :Note_redaction, :Note, :Description, :Test, :Nombre_notes,:Jaquette)');
 
 			$ligne_jeu=array(
 							 'Nom'=>$nom_jeu,
@@ -107,7 +122,8 @@
 							 'Note'=> $note,
 							 'Description' =>$description,
 							 'Test'=>$test,
-							 'Nombre_notes'=>1
+							 'Nombre_notes'=>1,
+							 'Jaquette'=>$destination
 							 );
 							 
 			
@@ -138,7 +154,7 @@
   {
   ?>  
      <div id="formulaire_jeu_backoffice">
-      <form action="jeu_backoffice.php" method="post" id="ajout_jeu">
+      <form action="jeu_backoffice.php" method="post" id="ajout_jeu" enctype="multipart/form-data">
 		<fieldset><legend>Ajouter un jeu</legend>
 			<label for="nom_jeu">Nom du jeu :</label><input type="text" name="nom_jeu" maxlength="50" required /><br><br>
 			<label for="studio">Studio :</label><input type="text" name="studio" maxlength="40" required /><br><br>
@@ -185,6 +201,7 @@
 																</select><br><br>
 			<label for="description">Description :</label><textarea name="description" placeholder="Description du jeu"required ></textarea><br><br>
 			<label for="test">Test :</label><textarea name="test" placeholder="Test du jeu"required ></textarea><br><br>
+			<label for="image">Image :</label><input type="file" name="image" required/><br><br>
 			
 			<input type="submit" name="valider" value="Valider" style="margin-right:4%;"/><input type="reset" name="annuler" value="Vider le formulaire"><br>
 		</fieldset>
@@ -204,7 +221,7 @@
   ?>
  </div>
     <div class="footer">
-	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+	  <a href="Formulaire_contact.php">Contact</a>
     </div>
 </body>
 </html>

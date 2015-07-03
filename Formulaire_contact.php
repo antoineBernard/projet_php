@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
+  <div class="contenu">
 	<?php
 	//j'ai fais un include pour alléger les répétitions de code
 		include 'bandeau.php';
@@ -30,9 +31,9 @@
 		</fieldset>
     </form>
    </div>
-   
+ </div>   
     <div class="footer">
-	  <a href="Formulaire_contact.php">Contact</a> / Réseaux sociaux
+	  <a href="Formulaire_contact.php">Contact</a>
     </div>
 </body>
 </html>

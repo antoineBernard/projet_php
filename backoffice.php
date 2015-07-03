@@ -19,7 +19,8 @@
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
-	<body>
+<body>
+  <div class="contenu">
 		
 		<?php
 		//j'ai fais un include pour alléger les répétitions de code
@@ -55,7 +56,7 @@ if($autorisation == 1)
 			<input type="submit" value="Voir les propositions de jeux" id ="acces_backoffice"/>
 		 </form>
 	   </div>
-	   
+</div>	   
 	    <div class="footer">
 		  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
 	    </div>

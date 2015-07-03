@@ -122,7 +122,7 @@
         Jeu du mois
 	  </div>
 	  <div class="imgjms">
-	    <img src="Images/Endless_Space_Box_Art_No_Age_Rating.jpg" style="height:100%;width:100%;"/>
+	    <img src="<?php echo $jeuDuMois['Jaquette'] ?>" style="height:100%;width:100%;"/>
 	  </div>
 	  <div class="titre">	   
 	     <?php echo $jeuDuMois['Nom'] ?>
@@ -150,7 +150,7 @@
         Jeu de la semaine
 	  </div>
 	  <div class="imgjms">
-	    <img src="Images/sid.jpg" style="height:100%;width:100%;"/>
+	    <img src="<?php echo $jeuSemaine['Jaquette']; ?>" style="height:100%;width:100%;"/>
 	  </div>
 	  <div class="titre">	   
 	     <?php echo $jeuSemaine['Nom'] ?>
@@ -229,10 +229,9 @@
     <div class="defilement_commentaires">
       <img src="Images/bouton_defilement.jpg" style="height:100%;width:100%"/>
     </div>
-
   </div>
     <div class="footer">
-	    <a href="Formulaire_contact.php">Contact</a> / Réseaux sociaux
+	    <a href="Formulaire_contact.php">Contact</a>
     </div>  
 </body>
 </html>
