@@ -89,7 +89,7 @@
 				
 			</select><br><br>			
 			<label for="email">Adresse électronique :</label><input type="email" name="email" maxlength="60" placeholder="VOTRE adresse électronique" size="25" required><br><br>
-			<label for="message">Description :</label><textarea name="message" required >Décrivez brièvement le jeu ici.</textarea><br><br>
+			<label for="message">Description :</label><textarea name="message" placeholder="Décrivez brièvement le jeu ici." required ></textarea><br><br>
 
 			<input type="submit" name="envoyer" value="Envoyer" style="margin-right:4%;"/><input type="reset" name="annuler" value="Vider le formulaire"/><br>
 		</fieldset>

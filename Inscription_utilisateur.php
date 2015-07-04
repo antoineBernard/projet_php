@@ -18,15 +18,7 @@
   </div>
         <?php
             
-            //on se connecte à la base
-            $servername = getenv('IP');
-            $username = getenv('C9_USER');
-            $password = "";
-            $database = "ProjetWeb";
-            $dbport = 3306;
-        
-            // Create connection
-            $bdd = new mysqli($servername, $username, $password, $database, $dbport);
+            include 'connexionBDD.php';
         
         
             // Check connection
@@ -47,13 +39,16 @@
                 
                 //-----------------------on verifie si l'utilisateur n'existe pas déjà
                 //je prépare ma requête
-                $reqVerif = $bdd->prepare('SELECT Pseudonyme FROM utilisateurs WHERE Adresse_email = ?');
+                $reqVerif = $bdd->prepare('SELECT Pseudonyme FROM utilisateurs WHERE Adresse_email = :Adresse_email');
                 //on met qu'un "s car il n'y a qu'un seul paramètre bindé de type String"
-                $reqVerif->bind_param("s",$email);
+                $ligne=array(
+                    'Adresse_email'=>$email
+                    );
                 //j'execute la requete
-                $reqVerif->execute();
+                $reqVerif->execute($ligne);
+                
                 $resultat = $reqVerif->fetch();
-
+                
                 //si le pseudo existe déjà en BDD
                 if($resultat)
                 {
@@ -69,10 +64,14 @@
                     if(filter_var($email, FILTER_VALIDATE_EMAIL))
                     {
                     //insertion dans la base
-                     $req = $bdd->prepare('INSERT INTO utilisateurs(Pseudonyme, Mot_de_passe, Adresse_email, Date_inscription) VALUES(?, ?, ?, CURDATE())');
-                     //"sss", car 3 paramètre bindé de type String
-                     $req->bind_param("sss", $pseudonyme, $mot_de_passe_crypt, $email);
-                     $req->execute();
+                     $req = $bdd->prepare('INSERT INTO utilisateurs(Pseudonyme, Mot_de_passe, Adresse_email, Date_inscription) 
+                     VALUES(:Pseudonyme, :Mot_de_passe, :Adresse_email, CURDATE())');
+                     $ligne2=array(
+                         'Pseudonyme'=>$pseudonyme,
+                         'Mot_de_passe'=>$mot_de_passe_crypt,
+                         'Adresse_email'=>$email
+                         );
+                     $req->execute($ligne2);
     
                      ?>$lmo
                      

@@ -47,7 +47,7 @@ body{
 
 .recherche p{
   text-align:center;
-  line-height:100px;
+  line-height:345%;
   font-family: 'Play', sans-serif;
   font-size:250%;
 }
@@ -187,6 +187,7 @@ body{
   margin:0px;
   padding:15px;
   font-weight:bold;
+  text-align:justify;
 }
 
 .presentation_jeu p{
@@ -207,11 +208,11 @@ body{
   margin:0;
   min-height:300px;
   padding:15px;
+  text-align:justify;
 }
 
 .test_jeu p{
-  margin-top:0px;
-  margin-bottom:0px;
+  margin:0px 10px;
 }
 
 #recherche_jeux_nom {
@@ -465,11 +466,16 @@ input{
   width:200px;
 }
 
-#bouton_inscription{
+#bouton_inscription, #reesayer{
   position: relative;
   margin-top: 30%;
   margin-left: 28%;
 }
+
+#reesayer{
+  margin-top: 5%;
+}
+
 
 #bouton_proposition, #bouton_connectu, #bouton_deconnexion, #modification_profil, #acces_backoffice, #bouton_backoffice{
   float:right;
@@ -514,6 +520,9 @@ input{
   position: absolute;
   padding-left: 5%;
   background-color: green;
+  border-radius: 5px;
+  padding: 3px 3px 3px 3px;
+  box-shadow: 4px 6px 0px;
 }
 
 .erreur_erase_admin{
@@ -592,6 +601,17 @@ input{
   margin-top:15px;
 }
 
+.tableau_jeu tr{
+  width:100%;
+  min-width:320px;
+}
+
+.tableau_jeu td{
+  display:inline-block;
+  width:50%;
+  min-width:200px;
+}
+
 .commentaires_page_jeu{
   position:relative;
   width:100%;
@@ -604,7 +624,7 @@ input{
   width:50%;
 }
 
-.commentaires_page_jeu td p,.commentaires_accueil td p{
+.commentaires_page_jeu td p{
   position:relative;
   margin:10px;
   font-family:arial;
@@ -616,10 +636,22 @@ input{
   width:100%;
   min-width:690px;
 }
+.commentaires_accueil tr{
+  width:100%;
+  min-width:690px;
+}
 
 .commentaires_accueil td{
+  display:inline-block;
   min-height:160px;
-  width:33%;
+  max-width:32%;
+  min-width:230px;
+  margin-right:25px;
+  font-size:1.3em;
+}
+
+.commentaire_accueil{
+  font-weight:bold;
 }
 
 

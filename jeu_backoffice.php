@@ -6,6 +6,7 @@
 	$reponse = $bdd->query('SELECT Admin FROM utilisateurs WHERE Pseudonyme= \''.$pseudo.'\' ');
 	$autorisation=-1;
 	
+	
 	while ($donnees = $reponse->fetch())
 	{
 	   $autorisation = $donnees['Admin'];
@@ -82,56 +83,85 @@
 			if($ecrire)
 			{
 
-			try
-			{
-				$servername = getenv('IP');
-				$username = getenv('C9_USER');
-    		    $password = "";
-				$database = "ProjetWeb";
-				$bdd=new PDO("mysql:host=$servername;dbname=$database;charset=utf8",$username,$password);					
-			}
-			catch(Exception $e){
-				echo "Erreur de connexion avec la base : projetweb\n";
-				echo 'Message : '.$e->getMessage()."\n";
-			}
-			//echo $_FILES['image']['tmp_name'];
+            
 			
 			$destination="Images/".$_FILES['image']['name'];
 			
 			$telechargement=move_uploaded_file($_FILES['image']['tmp_name'],$destination);
 			
-			if($telechargement)
-			{
-			  echo "Téléchargement réussi !";
-			}
-			else
-			{
-			  echo "Echec du téléchargement !";	
-			}
+			  if($telechargement)
+			  {
+			    echo "Téléchargement réussi !";
+			  }
+			  else
+			  {
+			    echo "Echec du téléchargement !";	
+			  }
 			
-			$req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Editeur, Genre, Univers, Note_redaction, Note, Description, Test,Nombre_notes,Jaquette) VALUES(:Nom, :Sortie, :Nom_studio, :Editeur, :Genre, :Univers, :Note_redaction, :Note, :Description, :Test, :Nombre_notes,:Jaquette)');
+			  $editeurExiste=false;
+			  
+			  $reqVerif=$bdd->prepare('SELECT Editeur FROM editeurs');
+			  $reqVerif->execute();
+			  
+			  while(($editeurBase = $reqVerif->fetch()) && $editeurExiste==false)
+			  {
+			  	if($editeurBase['Editeur']==$editeur)
+			  	{
+			  	  $editeurExiste=true;
+			  	}
+			  }
+			  
+			  if(!$editeurExiste){
+			  	echo "L'éditeur entré n'existe pas !<br>";
+			  }
+			  
+			  $reqVerif -> closeCursor();
+			  
+			  
+			  $studioExiste=false;
+			  
+			  $reqVerif=$bdd->prepare('SELECT Nom_studio FROM studios');			  
+			  $reqVerif->execute();
+			  
+			  while(($studioBase = $reqVerif->fetch()) && $studioExiste==false)
+			  {
+			  	if($studioBase['Nom_studio']==$studio)
+			  	{
+			  	  $studioExiste=true;
+			  	}
+			  }
+			  $reqVerif -> closeCursor();			  
+			  
+			  if(!$studioExiste){
+			  	echo "Le studio entré n'éxiste pas !<br>";
+			  }
+			  
+			  if($editeurExiste && $studioExiste)
+			  {
 
-			$ligne_jeu=array(
-							 'Nom'=>$nom_jeu,
-							 'Sortie'=>$date_sortie,
-							 'Nom_studio'=>$studio,
-							 'Editeur'=>$editeur,
-							 'Genre'=>$genre,
-							 'Univers'=>$univers,
-							 'Note_redaction'=>$note,
-							 'Note'=> $note,
-							 'Description' =>$description,
-							 'Test'=>$test,
-							 'Nombre_notes'=>1,
-							 'Jaquette'=>$destination
-							 );
+ 			    $req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Editeur, Genre, Univers, Note_redaction, Note, Description, Test,Nombre_notes,Jaquette) VALUES(:Nom, :Sortie, :Nom_studio, :Editeur, :Genre, :Univers, :Note_redaction, :Note, :Description, :Test, :Nombre_notes,:Jaquette)');
+
+			    $ligne_jeu=array(
+			  				     'Nom'=>$nom_jeu,
+			  				     'Sortie'=>$date_sortie,
+							     'Nom_studio'=>$studio,
+							     'Editeur'=>$editeur,
+							     'Genre'=>$genre,
+							     'Univers'=>$univers,
+							     'Note_redaction'=>$note,
+							     'Note'=> $note,
+							     'Description' =>$description,
+							     'Test'=>$test,
+							     'Nombre_notes'=>1,
+							     'Jaquette'=>$destination
+							     );
 							 
-			
-			$req->execute($ligne_jeu);	
+			    $req->execute($ligne_jeu);	
 
-			$req->closeCursor();
+			    $req->closeCursor();
 			
-			echo "Page crée !";
+			    echo "Page crée !";
+			  }
 			}
 	?>
 	 </div>
@@ -146,7 +176,7 @@
 		include 'bandeau.php';
     ?>
   <div class="boutons_navigation">
-  	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
+  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
   <?php
@@ -164,6 +194,7 @@
 												<option value="Aventure">Aventure</option>
 												<option value="FPS">FPS</option>
 												<option value="Jeu de rôles">Jeu de rôles</option>
+												<option value="Plates-forme">Plates-formes</option>
 												<option value="Réflexion">Réflexion</option>		
 												<option value="Simulation">Simulation</option>
 												<option value="Stratégie">Stratégie</option>
@@ -177,7 +208,7 @@
 													<option value="Science-fiction">Science-fiction</option>
 													<option value="Steampunk">Steampunk</option>
 												  </select><br><br>			
-			<label for="date_sortie">Année de sortie :</label><input type="text" name="date_sortie" maxlength="10" placeholder="jj/mm/yyyy" required /><br><br>
+			<label for="date_sortie">Date de sortie :</label><input type="text" name="date_sortie" maxlength="10" placeholder="jj/mm/aaaa" required /><br><br>
 			<label for="note">Note :</label><select name="note"><option value="1">1</option>
 																<option value="2">2</option>
 																<option value="3">3</option>

@@ -47,7 +47,7 @@
 			  <tr><td><?php echo 'Note : <b>'.$tab_jeux[$i]['Note'].'<b>'; ?></td></tr>
 		  </table><br>
 
-		  <form method="post" action="PageJeux_testAntoine.php">
+		  <form method="post" action="PageJeux.php">
 		      <input type="hidden" name="jeu_choisi" value="<?php echo $tab_jeux[$i]['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
 		  </form>

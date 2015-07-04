@@ -10,6 +10,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<div class="contenu">
   <?php
 
     include 'bandeau.php';
@@ -22,7 +23,7 @@
   </div>    
     
   <div id="formulaire_ajout_commentaire">
-    <form action="PageJeux_testAntoine.php" method="post" id="ajout_commentaire">
+    <form action="PageJeux.php" method="post" id="ajout_commentaire">
 		<fieldset><legend>Ajouter un commentaire</legend>
 		 <label for="note">Note :</label><select name="note"><option value="1">1</option>
 																<option value="2">2</option>
@@ -45,12 +46,12 @@
 																<option value="19">19</option>
 																<option value="20">20</option>
 															</select><br><br>
-	      <label for="commentaire">Laisse un commentaire :</label><textarea name="commentaire" placeholder="Laisse un commentaire !" required></textarea><br><br>
+	      <label for="commentaire">Laisse un commentaire (maximum 346 caractères) :</label><textarea name="commentaire" placeholder="Laisse un commentaire !" maxlength="346" required></textarea><br><br>
 	      <input type="hidden" name="retour_commentaire" value="<?php echo $id_jeu;?>"/>
 	      <input type="submit" name="valider" value="Valider" style="margin-right:4%;"/><br>
 	  </form>
   </div>
-  
+ </div>
   <div class="footer">
 	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
   </div>

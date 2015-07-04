@@ -3,17 +3,7 @@
 //fonction pour trouver les valeurs en base
     function rechercheDuMot($mot) {
         // Connexion à la base de données
-        $servername = getenv('IP');
-        $username = getenv('C9_USER');
-        $password = "";
-        $database = "ProjetWeb";
-        $dbport = 3306;
-        
-        try {
-            $bdd = new PDO("mysql:host=$servername;dbname=$database;charset=utf8","$username", "$password");
-        } catch(Exception $e) {
-            die('Erreur : '.$e->getMessage());
-        }
+        include 'connexionBDD.php';
  
         // Requête
         $requete = "SELECT Nom FROM jeux";

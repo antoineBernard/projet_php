@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Contact</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
@@ -17,15 +18,32 @@
   	 <a href="Top10.php" class="bouton">Top 10</a>	
    </div>
 	
+	<?php
+	
+	if(!empty($_POST['envoyer'])){
+		$destinataire='bertrand.benoit202@gmail.com';
+		$objet='abgames - '.$_POST['objet'];
+		$message=$_POST['message'];
+		$enTete = 'From: '.$_POST['prenom'].' '.$_POST['nom'].' <'.$_POST['email'].'>'."\r\n";
+		
+		if(mail($destinataire,$objet,$message,$enTete)){
+			echo "Message envoyé !<br>";
+		}
+		else{
+			echo "Echec de l'envoi du message !<br>";
+		}
+	}
+	?>
+	
    
    <div class="formulaire_utilisateur">
-    <form action="Inscription_utilisateur.html" method="post" id="formulaire_contact">
+    <form action="Formulaire_contact.php" method="post" id="formulaire_contact">
 		<fieldset><legend>Contacte-nous</legend>
 			<label for="nom">Nom :</label><input type="text" name="nom" placeholder="votre nom" maxlength="30" required/><br><br>
 			<label for="prenom">Prénom :</label><input type="text" name="prenom" maxlength="30" placeholder="votre prénom" required/><br><br>
 			<label for="email">Adresse électronique :</label><input type="text" name="email" maxlength="60" placeholder="example@example.fr" required><br><br>
 			<label for="objet">Objet :</label><input type="text" name="objet" maxlength="30" placeholder="sujet de votre message" size="42" required/><br><br>
-			<label for="message">Message :</label><textarea name="message" required >Votre message</textarea><br><br>
+			<label for="message">Message :</label><textarea name="message" placeholder="Votre message" required ></textarea><br><br>
 
 			<input type="submit" name="envoyer" value="Envoyer" style="margin-right:4%;"/><input type="reset" name="annuler" value="Vider le formulaire"/><br>
 		</fieldset>

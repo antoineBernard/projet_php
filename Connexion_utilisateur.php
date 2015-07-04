@@ -10,7 +10,7 @@
    <div class="contenu">
         <div style="position:absolute;top:110px;left:15px;">
            <?php
-            
+            $message_erreur =" ";
             //on se connecte à la base
             include'connexionBDD.php';
         
@@ -19,7 +19,7 @@
             if ($bdd->connect_error) {
                 die("Connection failed: " . $bdd->connect_error);
             } 
-            echo "Connected successfully (".$bdd->host_info.")";
+
             $pseudonyme = $_POST['pseudo'];
             $mdpSaisie = $_POST['mdp'];
             
@@ -37,13 +37,12 @@
             //si le pseudo existe déjà en BDD
             if(!$resultat)
             {
-               echo "L'utilisateur n'existe pas"; 
+               $message_erreur = "L'utilisateur n'existe pas"; 
             }
             else
             {
                 $verify = password_verify("boubou", $mdpDeBDD);
                 
-                var_dump($verify);
                 //on verifie si le mot de passe est bon
                 if(password_verify($mdpSaisie, $mdpDeBDD))
                 {
@@ -56,11 +55,11 @@
                     // echo "<p> Vous êtes connecté en tant que $pseudo !<p></div>";
                     
                     // On redirige le visiteur vers la page d'accueil
-                     header ('Location: /Accueil.php');
+                    echo "<script> window.location.replace('Accueil.php') </script>";
                 }
                 else
                 {
-                    echo "Mauvais mot de passe";
+                    $message_erreur= "Mauvais mot de passe";
                 }
             }
       
@@ -104,6 +103,17 @@
 	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
        <div class ="nouveau_membre">
+           <?php 
+            echo "Connexion impossible : ".$message_erreur;
+           ?>
+           <div>
+               <a href="Connexion_utilisateur.html" class="bouton" id="reesayer">Reesayer</a>
+           </div>
+           
+           <div>
+               <a href="Formulaire_contact.php" class="bouton" id="reesayer">Mot de passe perdu ?</a>
+           </div>
+           
        </div>
 
     <div class="footer">

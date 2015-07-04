@@ -49,7 +49,7 @@
 			<p id="btn1">TROUVE TON JEU</p>
 			
 			<table id="recherche_generale">
-				<form method="post" action="Resultat_recherche_bandeau.php">
+				<form method="post" action="Resultat_recherche.php">
 			    	<tr>
 			    		<td>
 				  			<label for="genre">Genre :</label><select name="genre">
@@ -130,7 +130,7 @@
 		<div class="clear"></div>	  
 	  <div class="resume">
 	    <p><?php echo $jeuDuMois['Description'] ?></p>
-	    <form method="post" action="PageJeux_testAntoine.php">
+	    <form method="post" action="PageJeux.php">
 			  <input type="hidden" name="jeu_choisi" value="<?php echo $jeuDuMois['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu_nomine" name="valider" value="En savoir plus sur ce jeu"/>
 			  <div class="clear"></div>
@@ -158,7 +158,7 @@
 			<div class="clear"></div>
   	  <div class="resume">
 	    <p><?php echo $jeuSemaine['Description'] ?></p>
-	    <form method="post" action="PageJeux_testAntoine.php">
+	    <form method="post" action="PageJeux.php">
 			   <input type="hidden" name="jeu_choisi" value="<?php echo $jeuSemaine['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu_nomine" name="valider" value="En savoir plus sur ce jeu"/>
 			  <div class="clear"></div>
@@ -191,7 +191,7 @@
             $comm=$commentaires[$i];
             $i++;
             ?>
-            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></p></td>  
+            <td><div class="commentaire_accueil"><?php echo $comm['Commentaire']."</div><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></td>  
           <?php
           }
           $curseur+=3;
@@ -204,7 +204,7 @@
             $comm=$commentaires[$i];
             $i++;
             ?>
-            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></p></td>  
+            <td><div class="commentaire_accueil"><?php echo $comm['Commentaire']."</div><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></td>  
           <?php
           }
           $curseur+=3;
@@ -217,7 +217,7 @@
             $comm=$commentaires[$i];
             $i++;
             ?>
-            <td><p><?php echo "<b>".$comm['Commentaire']."</b><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></p></td>  
+            <td><div class="commentaire_accueil"><?php echo $comm['Commentaire']."</div><br><i>".$comm['Pseudo_utilisateur']."</i> - ".$comm['Nom']; ?></td>  
           <?php
           }
           $curseur+=3;
