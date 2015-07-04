@@ -32,6 +32,8 @@ body{
 }
 
 #recherche{
+  border-color: black;
+  border: solid 1px black;
   position:relative;
   background-color:rgba(208,7,7,0.7);
   width:35%;
@@ -47,7 +49,7 @@ body{
 
 #recherche p{
   text-align:center;
-  line-height:370%;
+  line-height:249%;
   font-family: 'Play', sans-serif;
   font-size:250%;
 }
@@ -347,8 +349,8 @@ input{
 
 .jeux_suggeres{
   position:relative;
-  background-color: rgba(220, 220, 220, 0.35);
-  width:70%;
+  background-color: rgba(100, 100, 100, 0.45);
+  width:60%;
   border-bottom: 10px;
   min-width:500px;
   margin:50px auto;
@@ -371,7 +373,7 @@ input{
 
 #formulaire_jeu_backoffice, #formulaire_ajout_commentaire{
   position:relative;
-  margin-top:70px;
+  margin-top: 10%;
   margin-left:auto;
   margin-right:auto;
   margin-bottom:50px;
@@ -469,7 +471,15 @@ input{
 
 .ref_jeu{
   position:relative;
-  margin-top:15px;
+  width:70%;
+  float:left;
+  padding-top:10px;
+  height:140px;
+  font-size:160px;
+}
+
+.ref_jeu td{
+  min-width:200px;
 }
 
 .jeu{
@@ -547,12 +557,11 @@ input{
   color:#FFFFFF;
   font-weight:bolder;
   text-decoration:none;
-  border-radius:5px;
-  border:solid 1px #FFFFFF;
+  border:solid 1px rgba(25,31,43,0.975);
   margin-left:10px;
 }
 #bouton_deconnexion, #modification_profil{
-  margin-top: 50%;
+  margin-top: 10%;
   margin-right: 23%;
   color : black;
   border-color : black;
@@ -560,8 +569,8 @@ input{
 
 #acces_backoffice, #bouton_backoffice{
   margin-right: 10%;
-  color : red;
-  border-color : red;
+  color : black;
+  border-color : black;
   width: 500px; 
 }
 
@@ -570,12 +579,17 @@ input{
   margin-right: 23%;
 }
 
+#bouton_backoffice:hover{
+  border-color: red;
+}
+
 .erreur_admin{
   background-color: red;
 }
 
 .ajout_admin, .erreur_erase_admin{
   margin-top: 10%;
+  margin-left: 25%;
   position: absolute;
   padding-left: 5%;
   background-color: green;
@@ -705,31 +719,33 @@ input{
 
 
 #tableau_utilisateurs table {
-  border:2px solid #DF3F3F;
+  border:1px solid black;
   border-collapse:collapse;
-  width:850px;
+  width:90%;
   margin-left: 10px;
   margin-right: auto;
+  margin-bottom: 13%;
 }
 #tableau_utilisateurs thead, tfoot {
   background-color:#D0E3FA;
-  border:1px solid #DF3F3F;
+  border:1px solid black;
   text-align:center;
 }
 #tableau_utilisateurs tbody {
-  background-color:#FFFFFF;
-  border:1px solid #DF3F3F;
+  background-color: rgba(100, 100, 100, 0.45);
+  border:1px solid black;
 }
 #tableau_utilisateurs th {
-  border:1px solid #DF3F3F;
+  border:1px solid black;
   padding:5px;
-  background-color:#FFF3F3;
+  background-color: rgba(25,31,43,0.975);
+  color: white;
   width:20%;
   text-align:center;
 }
 #tableau_utilisateurs td {
   font-size:80%;
-  border:1px solid #DF3F3F;
+  border:1px solid black;
   padding:5px;
   text-align:center;
 }
@@ -738,7 +754,6 @@ input{
   font-family:Arial;
   font-size:120%;
   text-align:center;
-  color:#DF3F3F;
   font-weight:bold
 }
 

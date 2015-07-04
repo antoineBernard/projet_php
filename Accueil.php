@@ -97,7 +97,7 @@ $('#repair-drop').on('mouseleave', function(e) {
 					</tr>
 					<tr>
 							<td>
-								<label for="annee_sortie">Sorti après :</label><input type="text" name="annee_sortie" placeholder="annee" style="width:20%;" maxlength="4"/>
+								<label for="annee_sortie">Sorti après :</label><input type="text" name="annee_sortie" placeholder="année" style="width:20%;" maxlength="4"/>
 							</td>
 					</tr>
 					<tr>

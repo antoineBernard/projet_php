@@ -159,7 +159,6 @@ if($autorisation == 1)
 						echo "<td>".$nomine."</td>";
 						echo "<td>".$jeuxMois."</td>";
 						echo "<td>".$jeuxSemaine."</td>";
-						echo "<td>".$admin."</td>";
 						echo "<td>";
 						?>
 						 <form method="post" action="nomination_backoffice.php">
@@ -185,7 +184,7 @@ if($autorisation == 1)
 
  </div>  
     <div class="footer">
-	  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+	  <a href="Formulaire_contact.html">Contact</a>
     </div>
 
 
