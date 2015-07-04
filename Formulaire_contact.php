@@ -6,6 +6,8 @@
 <head>
 	<title>Contact</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="projet_Web.css">
+	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div class="contenu">
@@ -14,7 +16,7 @@
 		include 'bandeau.php';
   	?>
    <div class="boutons_navigation">
-  	 <a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
+  	 <a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
   	 <a href="Top10.php" class="bouton">Top 10</a>	
    </div>
 	

@@ -6,19 +6,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>Accueil</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!-- css de base de Jquery -->
 	<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
 	<!-- j'importe ma jolie librairie Jquery et JqueryUI pour faire de l'ajax (modifier des données HTML sans recharger la page -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
+
+ 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
+ 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+    	
+  <!-- css de base de Jquery -->
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/smoothness/jquery-ui.css" />
 	
 	<!-- du javascript comme s'il en pleuvait-->
 	<script>
 	
-//je cache le formulaire au chargement de la page (comme ça si l'utilisateur désactive javascript, il pourra quand même utiliser le formulaire)
+		//je cache le formulaire au chargement de la page (comme ça si l'utilisateur désactive javascript, il pourra quand même utiliser le formulaire)
 		$(document).ready(function(){
-        $("#recherche_generale").addClass("hidden")
+        $("#recherche_generale").addClass("hidden");
 	});
 	
 	//quand la page est chargé est prêt, lors du click sur le bouton 1, tu charge le contenu du fichier txt dans la div #recherche avec des effets
@@ -26,10 +33,24 @@
 		//jquery pour le clique
 	    $("#btn1").click(function(){
 	        $(this).hide();
-	        $("#recherche_generale").removeClass("hidden").fadeIn();
+	        $('#recherche_generale').removeClass("hidden");
 	    });
 	});
 	
+	
+	$(document).ready(function() {
+    $('#menu-item-9').click(function(){
+        $('#repair-drop').removeClass('hide');
+        $('#repair-drop').animate({"max-height":"500px", "padding-top":"20px", "opacity":"1"},1500, "easeOutCubic");
+    });
+$('#repair-drop').on('mouseleave', function(e) {
+    setTimeout(function() {
+        $('#repair-drop').animate({"max-height":"0px", "overflow":"hidden", "padding":"0px","opacity":"0"},2000, "easeOutCubic");
+
+    }, 600);        
+
+});
+});
 
 	</script>
 </head>
@@ -45,7 +66,7 @@
 
   </div>
 
-  <div class="recherche" id="recherche">
+  <div  id="recherche">
 			<p id="btn1">TROUVE TON JEU</p>
 			
 			<table id="recherche_generale">
@@ -119,16 +140,13 @@
     	 
     	?>
       <div class="intitule">
-        Jeu du mois
+        <h1>Jeu du mois</h1>
 	  </div>
-	  <div class="imgjms">
-	    <img src="<?php echo $jeuDuMois['Jaquette'] ?>" style="height:100%;width:100%;"/>
-	  </div>
-	  <div class="titre">	   
-	     <?php echo $jeuDuMois['Nom'] ?>
-	  </div>
-		<div class="clear"></div>	  
+
 	  <div class="resume">
+	    <img src="<?php echo $jeuDuMois['Jaquette'] ?>" style="position:relative;float:left;width:15%;min-width:80px;min-height:80px;margin-right:15px;margin-bottom:15px;"/>	   
+	     <br><h2><?php echo $jeuDuMois['Nom'] ?></h2>
+	     <div class="separation"></div>
 	    <p><?php echo $jeuDuMois['Description'] ?></p>
 	    <form method="post" action="PageJeux.php">
 			  <input type="hidden" name="jeu_choisi" value="<?php echo $jeuDuMois['ID_jeu']; ?>"/>
@@ -147,16 +165,15 @@
     	 
     	?>
     <div class="intitule">
-        Jeu de la semaine
+        <h1>Jeu de la semaine</h1>
 	  </div>
-	  <div class="imgjms">
-	    <img src="<?php echo $jeuSemaine['Jaquette']; ?>" style="height:100%;width:100%;"/>
-	  </div>
-	  <div class="titre">	   
-	     <?php echo $jeuSemaine['Nom'] ?>
-	  </div>
-			<div class="clear"></div>
+
   	  <div class="resume">
+  	  	
+	    <img src="<?php echo $jeuSemaine['Jaquette']; ?>" style="position:relative;float:left;width:15%;min-width:80px;min-height:80px;margin-right:15px;margin-bottom:15px;"/>
+
+	     <br><h2><?php echo $jeuSemaine['Nom'] ?></h2>  	  	
+	     <div class="separation"></div>  	  	
 	    <p><?php echo $jeuSemaine['Description'] ?></p>
 	    <form method="post" action="PageJeux.php">
 			   <input type="hidden" name="jeu_choisi" value="<?php echo $jeuSemaine['ID_jeu']; ?>"/>
@@ -226,9 +243,6 @@
         </table>     
     </div>
   
-    <div class="defilement_commentaires">
-      <img src="Images/bouton_defilement.jpg" style="height:100%;width:100%"/>
-    </div>
   </div>
     <div class="footer">
 	    <a href="Formulaire_contact.php">Contact</a>

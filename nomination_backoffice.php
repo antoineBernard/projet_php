@@ -21,7 +21,6 @@
 
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-	
 
 
 </head>
@@ -81,16 +80,33 @@ if($autorisation == 1)
 	elseif(isset($_POST['new_jeux_semaine']))
 	{
 		$nomJeu = $_POST['new_jeux_semaine'];
-		$requetetAll = $bdd->query('UPDATE jeux SET Jeu_semaine = 0');
-		$requette = $bdd->prepare('UPDATE jeux SET Nomine = 1, Jeu_semaine = 1 WHERE Nom=:Nom');
+			
+		$nom = $bdd->prepare('SELECT Nom FROM jeux 
+                                  WHERE Nom = :Nom AND Nomine = 1');
+        $nom->execute(array(
+                'Nom' => $nomJeu));
+            
+        $resultat = $nom->fetch();
         
-        $ligne=array('Nom'=>$nomJeu);
-
-        $requette->execute($ligne);
-        $requette->closeCursor();
-		echo "<div class='ajout_admin'>";
-		echo $nomJeu." est maintenant le jeu de la semaine !";
-		echo "</div>";
+        if($resultat)
+        {
+        	echo "<div class='erreur_erase_admin'>";
+			echo "Erreur : Le jeu ".$nomJeu." à déjà été nommé jeux de la semaine ou jeux du mois !";
+			echo "</div>";	
+        }
+		else
+		{
+			$requetetAll = $bdd->query('UPDATE jeux SET Jeu_semaine = 0');
+			$requette = $bdd->prepare('UPDATE jeux SET Nomine = 1, Jeu_semaine = 1 WHERE Nom=:Nom');
+	        
+	        $ligne=array('Nom'=>$nomJeu);
+	
+	        $requette->execute($ligne);
+	        $requette->closeCursor();
+			echo "<div class='ajout_admin'>";
+			echo $nomJeu." est maintenant le jeu de la semaine !";
+			echo "</div>";
+			}
 	}
 	
 ?>

@@ -92,14 +92,13 @@
 			$reponse = $bdd->query("SELECT * FROM jeux WHERE ID_jeu= $id_jeu");
 
 			$jeu = $reponse->fetch();
-			
-			   echo "<p> bienvenue sur la page du jeu : <b>".$jeu['Nom']."</b></br>";
-			   echo "l'id du jeu en variable de session : $id_jeu";
+
 			
     ?>
 
   
-	<div class="fiche_jeu"> 
+	<div class="fiche_jeu">
+	  <div class="titre"><h1><?php echo $jeu['Nom']; ?></h1></div>
 	  <div class="presentation_jeu">
 
 	      <img src="<?php echo $jeu['Jaquette']; ?>" style="float:left;margin-right:10px;max-width:100px;min-height:80px;"/>

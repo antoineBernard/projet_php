@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Trouve ton jeu !</title>
+	<title>Résultat de recherche !</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<link rel="stylesheet" type="text/css" href="projet_Web.css">
 	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
@@ -73,7 +73,7 @@
 			  	  <table class="tableau_jeu">
 			  	      <tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
 			  		  <tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
-			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$jeuTrouve[$i]['ID_jeu']; ?></td></tr>
+			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td></td></tr>
 			  		  <tr><td><?php echo 'Note : '.$jeuTrouve[$i]['Note']; ?></td></tr>
 			  	  </table><br>
 
@@ -112,7 +112,7 @@
 			  	  <table class="tableau_jeu">
 			  	      <tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
 			  		  <tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
-			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td><?php echo 'ID du jeu : '.$jeuTrouve[$i]['ID_jeu']; ?></td></tr>
+			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td></td></tr>
 			  		  <tr><td><?php echo 'Note : '.$jeuTrouve[$i]['Note']; ?></td></tr>
 			  	  </table><br>
 
