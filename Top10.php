@@ -46,11 +46,12 @@
 			  <tr><td><?php echo 'Note : <b>'.$tab_jeux[$i]['Note'].'<b>'; */ ?></td></tr>
 		  </table><br> -->
 		  
-		  <img src="<?php echo $tab_jeux[$i]['Jaquette']; ?>" style="height:140px;max-width:100px;float:left;margin-top:15px;margin-left:15px;margin-right:15px;"/>
+		  <img src="<?php echo $tab_jeux[$i]['Jaquette']; ?>" style="height:140px;max-width:100px;float:left;margin-top:20px;margin-left:15px;margin-right:15px;"/>
+		  <h2><?php echo $tab_jeux[$i]['Nom'];?></h2>
+		  <div class="separation"></div>
 		  <table class="ref_jeu">
-		  	<tr><td><?php echo 'Jeu : '.$tab_jeux[$i]['Nom'];?></td><td><?php echo 'Studio : '.$tab_jeux[$i]['Nom_studio'];?></td></tr>
-		    <tr><td><?php echo 'Genre :'.$tab_jeux[$i]['Genre'];?></td><td><?php echo 'Univers : '.$tab_jeux[$i]['Univers'];?></td></tr>
-		    <tr><td><?php echo 'Sortie : '.$tab_jeux[$i]['Sortie'];?></td></tr>
+		  	<tr><td><?php echo 'Studio : '.$tab_jeux[$i]['Nom_studio'];?></td><td><?php echo 'Sortie : '.$tab_jeux[$i]['Sortie'];?></td></tr>
+		    <tr><td><?php echo 'Genre : '.$tab_jeux[$i]['Genre'];?></td><td><?php echo 'Univers : '.$tab_jeux[$i]['Univers'];?></td></tr>
 		    <tr><td><?php echo 'Note : <b>'.$tab_jeux[$i]['Note']."</b>";?></td></tr>
 		  </table>		  
           <div class="clear"></div>
@@ -58,6 +59,7 @@
 		      <input type="hidden" name="jeu_choisi" value="<?php echo $tab_jeux[$i]['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
 		  </form>
+		  <div class="clear"></div>
 		  <br><hr/>
 	<?php
 	  	}

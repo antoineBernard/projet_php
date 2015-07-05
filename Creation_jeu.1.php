@@ -90,7 +90,7 @@
       </div>
       
     <div class=\nfooter\n>
-	  <a href=\nFormulaire_contact.html\n>Contact</a> / Réseaux sociaux
+	  <a href=\nFormulaire_contact.php\n>Contact</a> / Réseaux sociaux
     </div>
   </div>
   </body>

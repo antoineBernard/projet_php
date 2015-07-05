@@ -94,7 +94,7 @@
    </div>
 	   
 	    <div class="footer">
-		  <a href="Formulaire_contact.html">Contact</a> / Réseaux sociaux
+		  <a href="Formulaire_contact.php">Contact</a> / Réseaux sociaux
 	    </div>
 
 

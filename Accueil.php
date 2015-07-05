@@ -147,7 +147,7 @@ $('#repair-drop').on('mouseleave', function(e) {
 	    <img src="<?php echo $jeuDuMois['Jaquette'] ?>" style="position:relative;float:left;width:15%;min-width:80px;min-height:80px;margin-right:15px;margin-bottom:15px;"/>	   
 	     <br><h2><?php echo $jeuDuMois['Nom'] ?></h2>
 	     <div class="separation"></div>
-	    <p><?php echo $jeuDuMois['Description'] ?></p>
+	    <p style="font-size:17px;"><?php echo $jeuDuMois['Description'] ?></p>
 	    <form method="post" action="PageJeux.php">
 			  <input type="hidden" name="jeu_choisi" value="<?php echo $jeuDuMois['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu_nomine" name="valider" value="En savoir plus sur ce jeu"/>
@@ -174,7 +174,7 @@ $('#repair-drop').on('mouseleave', function(e) {
 
 	     <br><h2><?php echo $jeuSemaine['Nom'] ?></h2>  	  	
 	     <div class="separation"></div>  	  	
-	    <p><?php echo $jeuSemaine['Description'] ?></p>
+	    <p style="font-size:17px;"><?php echo $jeuSemaine['Description'] ?></p>
 	    <form method="post" action="PageJeux.php">
 			   <input type="hidden" name="jeu_choisi" value="<?php echo $jeuSemaine['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu_nomine" name="valider" value="En savoir plus sur ce jeu"/>

@@ -92,6 +92,7 @@
 
       // On créé la requête
 			$email ="";
+			$nbCom = 0;
 			$reponse = $bdd->query('SELECT Adresse_email FROM utilisateurs WHERE Pseudonyme= \''.$pseudo.'\' ');
 			
 			while ($donnees = $reponse->fetch())
@@ -101,9 +102,48 @@
 			
 			$reponse->closeCursor();
 			echo "<p><b>Nom d'utilsateur :</b> $pseudo <br/><br/>";
-			echo   "<b>Adresse de messagerie :</b> $email <br/>";
-		
-		?>
+			echo "<b>Adresse de messagerie :</b> $email <br/><br/>";
+			
+			
+			$req = $bdd->query('SELECT Note FROM commentaire WHERE Pseudo_utilisateur= \''.$pseudo.'\' ');
+			while ($donnees = $req->fetch())
+			{
+			   $nbCom++;
+			}
+			
+			echo "<b>Nombre de commentaires : </b> $nbCom <br/></br>";
+			
+			?>
+			<table id="tableau_profil">
+		<thead>
+			<tr>
+				<th>Jeux</th>
+				<th>Notes attribuées</th>
+			</tr>
+		</thead>
+			<tbody>
+				<?php
+				$req2 = $bdd->query('SELECT * FROM commentaire WHERE Pseudo_utilisateur= \''.$pseudo.'\' ORDER BY ID_commentaire DESC');
+				while($commentaire = $req2->fetch())
+				{
+					$req3 = $bdd->prepare('SELECT * FROM jeux WHERE ID_jeu = :ID_jeu');
+					$ligne=array('ID_jeu'=>$commentaire['ID_jeu']);
+					$req3->execute($ligne);
+					$nomJeu = " ";
+					while($jeux = $req3->fetch())
+					{
+						$nomJeu = $jeux['Nom'];
+					}
+					
+					
+					echo "<tr>";
+						echo "<td>".$nomJeu."</td>";
+						echo "<td>".$commentaire['Note']."</td>";
+					echo "</tr>";
+				}
+				?>
+			</tbody>
+		</table>
 		</p>
 	
 	</div>

@@ -23,8 +23,6 @@
 		Resultat de la recherche
 	</div>
     <div class="clear"></div>
-	<div class="barre_resultat"></div>
-
 
 	<div class="jeux_suggeres">
 	   <?php
@@ -70,18 +68,21 @@
 			  	{
 			  	
 			  	?>
-			  	  <table class="tableau_jeu">
-			  	      <tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
-			  		  <tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
-			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td></td></tr>
-			  		  <tr><td><?php echo 'Note : '.$jeuTrouve[$i]['Note']; ?></td></tr>
-			  	  </table><br>
-
-			  	  <form method="post" action="PageJeux.php">
-			  	      <input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
-			  		  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
-			  	  </form>
-			  	  <br><hr/>
+		        <img src="<?php echo $jeuTrouve[$i]['Jaquette']; ?>" style="height:140px;max-width:100px;float:left;margin-top:20px;margin-left:15px;margin-right:15px;"/>
+		        <h2><?php echo $jeuTrouve[$i]['Nom'];?></h2>
+		        <div class="separation"></div>
+		        <table class="ref_jeu">
+		  	      <tr><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio'];?></td><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie'];?></td></tr>
+		          <tr><td><?php echo 'Genre : '.$jeuTrouve[$i]['Genre'];?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers'];?></td></tr>
+		          <tr><td><?php echo 'Note : <b>'.$jeuTrouve[$i]['Note']."</b>";?></td></tr>
+		        </table>		  
+                <div class="clear"></div>
+		        <form method="post" action="PageJeux.php">
+		          <input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
+			      <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
+		        </form>
+		        <div class="clear"></div>
+		        <br><hr/>
 			  	
 			  	<?php
 			  	}
@@ -109,18 +110,21 @@
 			while ($jeuTrouve[$i] = $reponse->fetch())
 			{
 			 ?>
-			  	  <table class="tableau_jeu">
-			  	      <tr><td><?php echo 'Jeu : '.$jeuTrouve[$i]['Nom'];?></td><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio']; ?></td></tr>
-			  		  <tr><td><?php echo 'Genre :'.$jeuTrouve[$i]['Genre']; ?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers']; ?></td></tr>
-			  		  <tr><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie']; ?></td><td></td></tr>
-			  		  <tr><td><?php echo 'Note : '.$jeuTrouve[$i]['Note']; ?></td></tr>
-			  	  </table><br>
-
-			  	  <form method="post" action="PageJeux.php">
-			  	      <input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
-			  		  <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
-			  	  </form>
-			  	  <br><hr/>
+		      <img src="<?php echo $jeuTrouve[$i]['Jaquette']; ?>" style="height:140px;max-width:100px;float:left;margin-top:20px;margin-left:15px;margin-right:15px;"/>
+		      <h2><?php echo $jeuTrouve[$i]['Nom'];?></h2>
+		      <div class="separation"></div>
+		     <table class="ref_jeu">
+		  	   <tr><td><?php echo 'Studio : '.$jeuTrouve[$i]['Nom_studio'];?></td><td><?php echo 'Sortie : '.$jeuTrouve[$i]['Sortie'];?></td></tr>
+		       <tr><td><?php echo 'Genre : '.$jeuTrouve[$i]['Genre'];?></td><td><?php echo 'Univers : '.$jeuTrouve[$i]['Univers'];?></td></tr>
+		       <tr><td><?php echo 'Note : <b>'.$jeuTrouve[$i]['Note']."</b>";?></td></tr>
+		     </table>		  
+             <div class="clear"></div>
+		     <form method="post" action="PageJeux.php">
+		        <input type="hidden" name="jeu_choisi" value="<?php echo $jeuTrouve[$i]['ID_jeu']; ?>"/>
+			    <input type="submit" class="bouton jeu" name="valider" value="En savoir plus sur ce jeu"/>
+		     </form>
+		     <div class="clear"></div>
+		     <br><hr/>
 			<?php 
 			  $i++;
 			}

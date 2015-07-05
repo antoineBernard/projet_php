@@ -77,7 +77,7 @@
   
     
     <div class="footer">
-	  <a href="Formulaire_contact.html">Contact</a>
+	  <a href="Formulaire_contact.php">Contact</a>
     </div>
 </body>
 </html>

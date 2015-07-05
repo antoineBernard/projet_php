@@ -120,7 +120,7 @@ h1{
 }
 
 h2{
-  font-size:20px;
+  font-size:22px;
   font-weight:bold;
   margin:0px;
 }
@@ -357,8 +357,18 @@ input{
   padding:0px;
 }
 
+.jeux_suggeres h2{
+  padding-top:16px;
+}
+
 .jeux_suggeres hr{
   margin-bottom:0px;
+}
+
+hr{
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
 }
 
 .formulaire_utilisateur{
@@ -375,7 +385,7 @@ input{
   position:relative;
   margin-top: 10%;
   margin-left:auto;
-  margin-right:auto;
+  margin-right:30%;
   margin-bottom:50px;
   min-height:500px;
   width:50%;
@@ -475,7 +485,7 @@ input{
   float:left;
   padding-top:10px;
   height:140px;
-  font-size:160px;
+  font-size:19px;
 }
 
 .ref_jeu td{
@@ -483,10 +493,11 @@ input{
 }
 
 .jeu{
-  width:30%;
+  position:relative;
+  width:25%;
   min-width:100px;
-  margin-top:30px;
-  margin-left:50px;
+  float:right;
+  margin-right:20px;
 }
 
 .jeu_nomine{
@@ -607,12 +618,20 @@ input{
     margin-top: 15%;
     margin-left: 5%;
 }
+
+#tableau_profil{
+    margin-top: 5%;
+    margin-left: 5%;
+    border-collapse: collapse;
+}
+
 .tableau_utilisateurs{
   border-collapse: collapse;
 }
 .tableau_utilisateurs td, th{
   border: 1px solid black;
 }
+
 
 #bouton_deconnexion:hover , #modification_profil:hover, #acces_backoffice:hover{
   background-color: white;
@@ -718,7 +737,7 @@ input{
 }
 
 
-#tableau_utilisateurs table {
+#tableau_utilisateurs table, #tableau_profil table {
   border:1px solid black;
   border-collapse:collapse;
   width:90%;
@@ -726,16 +745,16 @@ input{
   margin-right: auto;
   margin-bottom: 13%;
 }
-#tableau_utilisateurs thead, tfoot {
+#tableau_utilisateurs thead, tfoot, #tableau_profil thead, tfoot{
   background-color:#D0E3FA;
   border:1px solid black;
   text-align:center;
 }
-#tableau_utilisateurs tbody {
+#tableau_utilisateurs tbody, #tableau_profil tbody {
   background-color: rgba(100, 100, 100, 0.45);
   border:1px solid black;
 }
-#tableau_utilisateurs th {
+#tableau_utilisateurs th, #tableau_profil th {
   border:1px solid black;
   padding:5px;
   background-color: rgba(25,31,43,0.975);
@@ -743,14 +762,14 @@ input{
   width:20%;
   text-align:center;
 }
-#tableau_utilisateurs td {
+#tableau_utilisateurs td, #tableau_profil td {
   font-size:80%;
   border:1px solid black;
   padding:5px;
   text-align:center;
 }
 
-#tableau_utilisateurs, caption {
+#tableau_utilisateurs, caption, #tableau_profil, caption  {
   font-family:Arial;
   font-size:120%;
   text-align:center;
