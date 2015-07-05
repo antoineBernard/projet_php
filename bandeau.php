@@ -12,7 +12,7 @@
                 <div id="resultats-autocompletion">
                 </div>
           </form>
-    		  <a href="/Accueil.php"><img src="/Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
+    		  <a href="Accueil.php"><img src="Images/logo_projet_web_blanc.png" style="position:absolute;height:80%;top:10%;left:47.5%;"/></a>
     		  <a href="Proposition_jeu.php" class="bouton_bandeau">Propose ton jeu</a>
     		  
     		<?php

@@ -31,7 +31,7 @@
 			include 'bandeau.php';
 	    ?>
 	  <div class="boutons_navigation">
-	  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
+	  	<a href="Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
 	  	<a href="Top10.php" class="bouton">Top 10</a>	
 	  </div>
 <?php
@@ -108,6 +108,33 @@ if($autorisation == 1)
 			echo "</div>";
 			}
 	}
+	elseif(isset($_POST['suppr_jeux']))
+	{
+		$IdJeu = $_POST['suppr_jeux'];
+		
+		//on supprime les commentaires avant => indispensable car FK
+		$requette = $bdd->prepare('DELETE FROM commentaire WHERE ID_jeu=:ID_jeu');
+            
+        $ligne=array('ID_jeu'=>$IdJeu);
+        
+        // et bim on execute
+        $requette->execute($ligne);
+        $requette->closeCursor();
+  
+  
+  		$requette2 = $bdd->prepare('DELETE FROM jeux WHERE ID_jeu=:ID_jeu');
+            
+        $ligne=array('ID_jeu'=>$IdJeu);
+        
+        // et bim on execute
+        $requette2->execute($ligne);
+        $requette2->closeCursor();
+        
+        
+  		echo "<div class='supp_jeux'>";
+		echo "un jeu à été supprimé !";
+		echo "</div>";
+	}
 	
 ?>
 	
@@ -168,9 +195,15 @@ if($autorisation == 1)
 						echo "</td>";
 						echo "<td>";
 						?>
-						
 						 <form method="post" action="nomination_backoffice.php">
 							<button type="submit" name="new_jeux_semaine" value="<?php echo $jeux['Nom']; ?>">Definir comme jeux de la semaine</button>
+						 </form>
+						<?php					
+						echo "</td>";
+						echo "<td>";
+						?>
+						 <form method="post" action="nomination_backoffice.php">
+							<button type="submit" name="suppr_jeux" value="<?php echo $jeux['ID_jeu']; ?>">Supprimer ce jeu</button>
 						 </form>
 						<?php					
 						echo "</td>";

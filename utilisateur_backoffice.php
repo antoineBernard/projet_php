@@ -32,7 +32,7 @@
 			include 'bandeau.php';
 	    ?>
 	  <div class="boutons_navigation">
-	  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
+	  	<a href="Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
 	  	<a href="Top10.php" class="bouton">Top 10</a>	
 	  </div>
 <?php
@@ -134,7 +134,7 @@ if($autorisation == 1)
 			<tr>
 				<th>Pseudonyme</th>
 				<th>Email</th>
-				<th>Date_inscription</th>
+				<th>Date inscription</th>
 				<th>Administrateur</th>
 
 			</tr>

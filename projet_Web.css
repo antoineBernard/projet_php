@@ -56,10 +56,10 @@ body{
 
 .encadre{
   position:relative;
+  margin-top:300px;
+  margin-left:180px;
   border-radius: 5px;
   float:left;
-  margin-top:300px;
-  margin-left:150px;
   width:35%;
   min-height:100px;
   min-width:350px;
@@ -94,8 +94,10 @@ h1{
  position:relative;
  float:left;
  width:15%;
- min-width:80px;
- min-height:80px;
+ margin-right:15px;
+ margin-bottom:15px;
+ min-width:90px;
+ height:260px;
 }
 
 .titre{
@@ -127,6 +129,7 @@ h2{
 
 .resume p{
  margin-top:15px;
+ padding-right:10px;
 }
 
 .commentaires{
@@ -291,18 +294,18 @@ input{
   height:60%;
 }
 
-#inscription_utilisateur label{
-  display:inline-block;
-  width:35%;
-  min-width:100px;
-}
-
 #connexion_utilisateur{
   position:absolute;
   top:20%;
   left:25%;
   width:50%;
   height:60%;;
+}
+
+#inscription_utilisateur label,#connexion_utilisateur label{
+  display:inline-block;
+  width:30%;
+  min-width:100px;
 }
 
 .infos_utilisateur{
@@ -322,6 +325,7 @@ input{
  margin-top:20px;
  margin-left:2%;
  margin-bottom:0px;
+ font-size: 20px;
 }
 
 .notre_selection{
@@ -381,11 +385,22 @@ hr{
   width:60%;
 }
 
+#actions_backoffice{
+  position:relative;
+  margin-top:180px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:50px;
+  min-height:500px;
+  width:50%;
+  max-width:800px;
+}
+
 #formulaire_jeu_backoffice, #formulaire_ajout_commentaire{
   position:relative;
-  margin-top: 10%;
+  margin-top: 100px;
   margin-left:auto;
-  margin-right:30%;
+  margin-right:auto;
   margin-bottom:50px;
   min-height:500px;
   width:50%;
@@ -416,13 +431,15 @@ hr{
 }
 
 .nouveau_membre, .modification_effectué{
+  margin-bottom: 5%;
   position:relative;
-  background-color:#00D965;
+  background-color: rgba(100, 100, 100, 0.45);
   margin-left:auto;
   margin-right:auto;
   margin-top:50px;
   width:70%;
   min-height:500px;
+  border: solid 1px black;
 }
 
 .avatar_actions_utilisateur{
@@ -501,12 +518,12 @@ hr{
 }
 
 .jeu_nomine{
-  position:relative;
+  position:absolute;
   border-radius:0px;
-  margin-top:45px;
-  margin-right:10px;
-  margin-bottom:10px;
-  float:right;
+  margin-top:2px;
+  margin-left:2px;
+  right:10px;
+  bottom:10px;
   width:38%;
   min-width:180px;
 }
@@ -599,8 +616,8 @@ hr{
 }
 
 .ajout_admin, .erreur_erase_admin{
-  margin-top: 10%;
-  margin-left: 25%;
+  top: 30%;
+  left: 15%;
   position: absolute;
   padding-left: 5%;
   background-color: green;
@@ -617,6 +634,11 @@ hr{
 #tableau_utilisateurs{
     margin-top: 15%;
     margin-left: 5%;
+}
+
+.tableau_ES{
+  margin-top:150px;
+  margin-left:5%;
 }
 
 #tableau_profil{
@@ -745,16 +767,25 @@ hr{
   margin-right: auto;
   margin-bottom: 13%;
 }
-#tableau_utilisateurs thead, tfoot, #tableau_profil thead, tfoot{
+
+.tableau_ES table{
+  border:1px solid black;
+  border-collapse:collapse;
+  width:90%;
+  margin-left: 10px;
+  margin-bottom:0px;  
+}
+
+#tableau_utilisateurs thead, tfoot, #tableau_profil thead, tfoot, .tableau_ES thead,tfoot{
   background-color:#D0E3FA;
   border:1px solid black;
   text-align:center;
 }
-#tableau_utilisateurs tbody, #tableau_profil tbody {
+#tableau_utilisateurs tbody, #tableau_profil tbody, .tableau_ES tbody{
   background-color: rgba(100, 100, 100, 0.45);
   border:1px solid black;
 }
-#tableau_utilisateurs th, #tableau_profil th {
+#tableau_utilisateurs th, #tableau_profil th, .tableau_ES th{
   border:1px solid black;
   padding:5px;
   background-color: rgba(25,31,43,0.975);
@@ -762,18 +793,46 @@ hr{
   width:20%;
   text-align:center;
 }
-#tableau_utilisateurs td, #tableau_profil td {
+#tableau_utilisateurs td, #tableau_profil td.tableau_ES td{
   font-size:80%;
   border:1px solid black;
   padding:5px;
   text-align:center;
 }
 
-#tableau_utilisateurs, caption, #tableau_profil, caption  {
+.tableau_ES td{
+  font-size:100%;
+  border:1px solid black;
+  padding:5px;
+  text-align:center;  
+}
+
+#tableau_utilisateurs, caption, #tableau_profil, caption, .tableau_ES caption{
   font-family:Arial;
   font-size:120%;
   text-align:center;
   font-weight:bold
+}
+
+#ajout_editeur{
+  width: 20%;
+  height: 15%;
+}
+
+.ajoutSE{
+  width:20%;
+  min-width:100px;
+  margin:40px auto;
+}
+
+.formulaire_ajoutES{
+  position:relative;
+  margin-top: 100px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:50px;
+  width:50%;
+  max-width:800px;  
 }
 
 

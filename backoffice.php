@@ -27,7 +27,7 @@
 			include 'bandeau.php';
 	    ?>
 	  <div class="boutons_navigation">
-	  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
+	  	<a href="Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
 	  	<a href="Top10.php" class="bouton">Top 10</a>	
 	  </div>
 <?php
@@ -37,9 +37,13 @@ if($autorisation == 1)
 	<div class="notre_selection">
 		Backoffice
 	</div>
-	   <div id="formulaire_jeu_backoffice">
+	   <div id="actions_backoffice">
 		 <form method="post "action="jeu_backoffice.php">
 			<input type="submit" value="Ajouter un jeu" id ="acces_backoffice"/>
+		</form>
+  		
+  		 <form method="post "action="studio_backoffice.php">
+			<input type="submit" value="Ajouter un studio / éditeur" id ="acces_backoffice"/>
 		 </form>
 		 
 		 <form method="post "action="utilisateur_backoffice.php">
@@ -55,10 +59,11 @@ if($autorisation == 1)
 			<input type="submit" value="Gestion des jeux" id ="acces_backoffice"/>
 		 </form>
 		 
-		 
   	 	<form method="post "action="proposition_backoffice.php">
 			<input type="submit" value="Voir les propositions de jeux" id ="acces_backoffice"/>
 		 </form>
+		 
+
 	   </div>
 </div>	   
 	    <div class="footer">

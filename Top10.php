@@ -16,7 +16,7 @@
 		include 'bandeau.php';
  	 ?>
   <div class="boutons_navigation">
-  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
+  	<a href="Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton actif">Top 10</a>	
   </div>
 	<div class="notre_selection">
@@ -46,7 +46,7 @@
 			  <tr><td><?php echo 'Note : <b>'.$tab_jeux[$i]['Note'].'<b>'; */ ?></td></tr>
 		  </table><br> -->
 		  
-		  <img src="<?php echo $tab_jeux[$i]['Jaquette']; ?>" style="height:140px;max-width:100px;float:left;margin-top:20px;margin-left:15px;margin-right:15px;"/>
+		  <img src="<?php echo $tab_jeux[$i]['Jaquette']; ?>" style="min-height:80px;max-width:100px;float:left;margin-top:20px;margin-left:15px;margin-right:15px;"/>
 		  <h2><?php echo $tab_jeux[$i]['Nom'];?></h2>
 		  <div class="separation"></div>
 		  <table class="ref_jeu">

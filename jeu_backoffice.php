@@ -26,7 +26,6 @@
 	if(!empty($_POST['valider']))
 	{
 	?>
-		<div style="position:absolute;z-index:1;color:white;">
 		<?php
 			$nom_jeu=$_POST['nom_jeu'];
 			$studio=$_POST['studio'];
@@ -83,7 +82,7 @@
 			if($ecrire)
 			{
 
-            
+            $telechargementReussi=false;
 			
 			$destination="Images/".$_FILES['image']['name'];
 			
@@ -91,11 +90,13 @@
 			
 			  if($telechargement)
 			  {
-			    echo "Téléchargement réussi !";
+			    $telechargementReussi=true;
 			  }
 			  else
 			  {
-			    echo "Echec du téléchargement !";	
+			    echo "<div class='erreur_erase_admin'>";
+				echo "Echec du téléchargement !";
+				echo "</div>";
 			  }
 			
 			  $editeurExiste=false;
@@ -136,7 +137,7 @@
 			  	echo "Le studio entré n'éxiste pas !<br>";
 			  }
 			  
-			  if($editeurExiste && $studioExiste)
+			  if($editeurExiste && $studioExiste && $telechargementReussi)
 			  {
 
  			    $req = $bdd->prepare('INSERT INTO jeux (Nom, Sortie, Nom_studio, Editeur, Genre, Univers, Note_redaction, Note, Description, Test,Nombre_notes,Jaquette) VALUES(:Nom, :Sortie, :Nom_studio, :Editeur, :Genre, :Univers, :Note_redaction, :Note, :Description, :Test, :Nombre_notes,:Jaquette)');
@@ -160,11 +161,12 @@
 
 			    $req->closeCursor();
 			
-			    echo "Page crée !";
+			    echo "<div class='ajout_admin'>";
+			    echo "Jeu créé !";
+			    echo "</div>";
 			  }
 			}
 	?>
-	 </div>
 	<?php
 	}
 	?>
@@ -176,7 +178,7 @@
 		include 'bandeau.php';
     ?>
   <div class="boutons_navigation">
-  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
+  	<a href="Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
   <?php
@@ -194,7 +196,7 @@
 												<option value="Aventure">Aventure</option>
 												<option value="FPS">FPS</option>
 												<option value="Jeu de rôles">Jeu de rôles</option>
-												<option value="Plates-forme">Plates-formes</option>
+												<option value="Plates-formes">Plates-formes</option>
 												<option value="Réflexion">Réflexion</option>		
 												<option value="Simulation">Simulation</option>
 												<option value="Stratégie">Stratégie</option>
@@ -232,7 +234,7 @@
 																</select><br><br>
 			<label for="description">Description :</label><textarea name="description" placeholder="Description du jeu"required ></textarea><br><br>
 			<label for="test">Test :</label><textarea name="test" placeholder="Test du jeu"required ></textarea><br><br>
-			<label for="image">Image :</label><input type="file" name="image" required/><br><br>
+			<label for="image">Jaquette :</label><input type="file" name="image" required/><br><br>
 			
 			<input type="submit" name="valider" value="Valider" style="margin-right:4%;"/><input type="reset" name="annuler" value="Vider le formulaire"><br>
 		</fieldset>

@@ -17,7 +17,7 @@
 		include 'bandeau.php';
     ?>
   <div class="boutons_navigation">
-  	<a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
+  	<a href="Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
   </div>
   
@@ -64,10 +64,10 @@
 			
 			
 			echo "<div class='ajout_admin'>";
-			echo "Votre proposition à été envoyé, <br> Un administrateur va bientôt évaluer votre propositon. <br> Vous serez prévenu par email si votre jeux est selectionné.";
+			echo "Votre proposition à été envoyée, <br> Un administrateur va bientôt évaluer votre propositon. <br> Vous serez prévenu par email si votre jeux est selectionné.";
 			echo "</div>";
 		}
-?>
+   ?>
 
    <div class="formulaire_utilisateur">
     <form action="Proposition_jeu.php" method="post" id="proposition_jeu">

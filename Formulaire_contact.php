@@ -16,7 +16,7 @@
 		include 'bandeau.php';
   	?>
    <div class="boutons_navigation">
-  	 <a href="/Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
+  	 <a href="Accueil.php" class="bouton" style="margin-right:10px;">Accueil</a>
   	 <a href="Top10.php" class="bouton">Top 10</a>	
    </div>
 	
@@ -29,10 +29,14 @@
 		$enTete = 'From: '.$_POST['prenom'].' '.$_POST['nom'].' <'.$_POST['email'].'>'."\r\n";
 		
 		if(mail($destinataire,$objet,$message,$enTete)){
-			echo "Message envoyé !<br>";
+			echo "<div class='ajout_admin'>";
+			echo "Message envoyé !";
+			echo "</div>";			
 		}
 		else{
-			echo "Echec de l'envoi du message !<br>";
+			echo "<div class='erreur_erase_admin'>";
+			echo "Echec de l'envoi du message !";
+			echo "</div>";
 		}
 	}
 	?>

@@ -61,7 +61,7 @@ $('#repair-drop').on('mouseleave', function(e) {
 		include 'bandeau.php';
   ?>
   <div class="boutons_navigation">
-  	<a href="/Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
+  	<a href="Accueil.php" class="bouton actif" style="margin-right:10px;">Accueil</a>
   	<a href="Top10.php" class="bouton">Top 10</a>	
 
   </div>
@@ -116,7 +116,6 @@ $('#repair-drop').on('mouseleave', function(e) {
 
     ?>
 
-  
     <div class="encadre">
     	<?php
 				/*
@@ -144,7 +143,9 @@ $('#repair-drop').on('mouseleave', function(e) {
 	  </div>
 
 	  <div class="resume">
-	    <img src="<?php echo $jeuDuMois['Jaquette'] ?>" style="position:relative;float:left;width:15%;min-width:80px;min-height:80px;margin-right:15px;margin-bottom:15px;"/>	   
+  	   <div class="imgjms">	
+	    <img src="<?php echo $jeuDuMois['Jaquette']; ?>" style="width:100%"/>
+       </div>
 	     <br><h2><?php echo $jeuDuMois['Nom'] ?></h2>
 	     <div class="separation"></div>
 	    <p style="font-size:17px;"><?php echo $jeuDuMois['Description'] ?></p>
@@ -152,7 +153,7 @@ $('#repair-drop').on('mouseleave', function(e) {
 			  <input type="hidden" name="jeu_choisi" value="<?php echo $jeuDuMois['ID_jeu']; ?>"/>
 			  <input type="submit" class="bouton jeu_nomine" name="valider" value="En savoir plus sur ce jeu"/>
 			  <div class="clear"></div>
-			</form>
+	    </form>
 	  </div>
     </div>
 	 
@@ -169,9 +170,9 @@ $('#repair-drop').on('mouseleave', function(e) {
 	  </div>
 
   	  <div class="resume">
-  	  	
-	    <img src="<?php echo $jeuSemaine['Jaquette']; ?>" style="position:relative;float:left;width:15%;min-width:80px;min-height:80px;margin-right:15px;margin-bottom:15px;"/>
-
+  	   <div class="imgjms">	
+	    <img src="<?php echo $jeuSemaine['Jaquette']; ?>" style="width:100%"/>
+       </div>
 	     <br><h2><?php echo $jeuSemaine['Nom'] ?></h2>  	  	
 	     <div class="separation"></div>  	  	
 	    <p style="font-size:17px;"><?php echo $jeuSemaine['Description'] ?></p>
@@ -183,7 +184,7 @@ $('#repair-drop').on('mouseleave', function(e) {
 	  </div>
     </div>
     <div class="clear"></div>	
- 
+
     <div class="commentaires">
 	  <?php
 	  

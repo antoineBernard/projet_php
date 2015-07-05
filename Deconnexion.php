@@ -9,5 +9,5 @@
     session_destroy();
      
     // On redirige le visiteur vers la page d'accueil
-    header ('Location: /Accueil.php');
+    header ('Location: Accueil.php');
 ?>
